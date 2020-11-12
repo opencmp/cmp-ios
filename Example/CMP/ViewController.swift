@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CMP
+
 
 class ViewController: UIViewController {
 
@@ -15,6 +17,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    @IBAction func testAction(_ sender: Any) {
+      present()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
