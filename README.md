@@ -1,6 +1,6 @@
 # CMP
 
-[![CI Status](https://img.shields.io/travis/Kovtun Dmitriy/CMP.svg?style=flat)](https://travis-ci.org/Kovtun Dmitriy/CMP)
+[![CI Status](https://img.shields.io/travis/Kovtun Dmitriy/CMP.svg?style=flat)](https://travis-ci.org/Unknown NAME/CMP)
 [![Version](https://img.shields.io/cocoapods/v/CMP.svg?style=flat)](https://cocoapods.org/pods/CMP)
 [![License](https://img.shields.io/cocoapods/l/CMP.svg?style=flat)](https://cocoapods.org/pods/CMP)
 [![Platform](https://img.shields.io/cocoapods/p/CMP.svg?style=flat)](https://cocoapods.org/pods/CMP)
@@ -22,7 +22,7 @@ pod 'CMP'
 
 ## Author
 
-Kovtun Dmitriy, mp.mobidev@gmail.com
+Unknown NAME, Unknown@gmail.com
 
 ## License
 
