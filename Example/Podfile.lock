@@ -1,0 +1,27 @@
+PODS:
+  - CMP (0.1.0)
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+
+DEPENDENCIES:
+  - CMP (from `../`)
+  - FBSnapshotTestCase (~> 2.1.4)
+
+SPEC REPOS:
+  trunk:
+    - FBSnapshotTestCase
+
+EXTERNAL SOURCES:
+  CMP:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CMP: 57a764bc56296a53f17632ddc32fc85bf7d6a493
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+
+PODFILE CHECKSUM: 2bd4ca8e13304af29c9d9176fae058c3e48ac467
+
+COCOAPODS: 1.9.3

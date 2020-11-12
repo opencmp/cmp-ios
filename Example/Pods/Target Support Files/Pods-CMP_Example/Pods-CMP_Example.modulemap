@@ -1,0 +1,6 @@
+framework module Pods_CMP_Example {
+  umbrella header "Pods-CMP_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
