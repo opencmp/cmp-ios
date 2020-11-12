@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/Kovtun Dmitriy/CMP'
+  s.homepage         = 'https://github.com/Unknown/CMP'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Kovtun Dmitriy' => 'mp.mobidev@gmail.com' }
-  s.source           = { :git => 'https://github.com/Kovtun Dmitriy/CMP.git', :tag => s.version.to_s }
+  s.author           = { 'Unknown Name' => 'unknown@gmail.com' }
+  s.source           = { :git => 'https://github.com/Unknown/CMP.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
