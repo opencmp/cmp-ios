@@ -14,12 +14,23 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
+        
+       
         // Do any additional setup after loading the view, typically from a nib.
     }
 
     @IBAction func testAction(_ sender: Any) {
-     // present()
-        info()
+        let filePath = Bundle.main.path(forResource: "cmp", ofType: "html")
+                do {
+                    let jsContent = try String.init(contentsOfFile: filePath!, encoding: String.Encoding.utf8)
+                    let context = OpenCmpContex(domen: jsContent, key: "key")
+                    OpenCmp.config.activateWithContext(context: context)
+                }
+                catch let error as NSError{
+                    print(error.debugDescription)
+                }
     }
     
 
@@ -29,4 +40,5 @@ class ViewController: UIViewController {
     }
 
 }
+
 

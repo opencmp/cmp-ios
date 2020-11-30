@@ -2,8 +2,18 @@
 import UIKit
 import WebKit
 
+
+protocol CMProtocol: class {
+    func getConset()
+    func setConset()
+    func showUI()
+    func hideUI()
+}
+
 @available(iOS 9.0, *)
 class WebPrezenterViewController: UIViewController {
+
+    
     
     enum WebViewKeyPath: String {
       case estimatedProgress
@@ -38,7 +48,7 @@ class WebPrezenterViewController: UIViewController {
 
     private let topMargin:CGFloat = 10.0
     private var lastLocation:CGPoint = .zero
-    public var request:URLRequest!
+    public var request: String!
    
     
     var detail:String? {
@@ -57,7 +67,15 @@ class WebPrezenterViewController: UIViewController {
     override public func viewDidLoad() {
       super.viewDidLoad()
       webView.navigationDelegate = self
-      webView.load(request)
+        webView.loadHTMLString(request, baseURL: nil)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//            self.showUI()
+//          
+//        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+//            self.hideUI()
+//        }
+      //webView.load(request)
     }
     
     public override func viewDidAppear(_ animated: Bool) {
@@ -71,15 +89,15 @@ class WebPrezenterViewController: UIViewController {
     }
     
     private func setupToolbar() {
-      let closeButton = createImageButton(imageName: "close_button")
-      closeButton.addTarget(self, action: #selector(dismissMe(_:)), for: .touchUpInside)
-      closeButton.tintColor = .gray
-      closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor).isActive = true
+//      let closeButton = createImageButton(imageName: "close_button")
+//      closeButton.addTarget(self, action: #selector(dismissMe(_:)), for: .touchUpInside)
+//      closeButton.tintColor = .gray
+//      closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor).isActive = true
 
       let titleStackView = UIStackView(arrangedSubviews: [ urlLabel])
       titleStackView.axis = .vertical
 
-      let toolbarStackView = UIStackView(arrangedSubviews: [closeButton, titleStackView])
+      let toolbarStackView = UIStackView(arrangedSubviews: [ titleStackView])
       toolbarStackView.spacing = 2.0
       toolbarStackView.axis = .horizontal
       toolbar.addSubview(toolbarStackView)
@@ -91,15 +109,15 @@ class WebPrezenterViewController: UIViewController {
       toolbarStackView.trailingAnchor.constraint(equalTo: toolbar.trailingAnchor, constant:  -49).isActive = true
     }
       
-    private func createImageButton(imageName: String) -> UIButton {
-      guard let closeImage = UIImage(
-        named: imageName,
-        in: Bundle(for: WebPrezenterViewController.self),
-        compatibleWith: nil) else { fatalError("No image named \(imageName) in the MHWebViewController.bundle") }
-      let closeButton = UIButton(type: .custom)
-      closeButton.setImage(closeImage, for: .normal)
-      return closeButton
-    }
+//    private func createImageButton(imageName: String) -> UIButton {
+//      guard let closeImage = UIImage(
+//        named: imageName,
+//        in: Bundle(for: WebPrezenterViewController.self),
+//        compatibleWith: nil) else { fatalError("No image named \(imageName) in the MHWebViewController.bundle") }
+//      let closeButton = UIButton(type: .custom)
+//      closeButton.setImage(closeImage, for: .normal)
+//      return closeButton
+//    }
     
     private func setupMainLayout() {
       view = UIView()
@@ -132,6 +150,7 @@ class WebPrezenterViewController: UIViewController {
       mainStackView.axis = .vertical
       container.addSubview(mainStackView)
       mainStackView.bindFrameToSuperviewBounds()
+
     }
     
     private func addWebViewObservers() {
@@ -148,14 +167,7 @@ class WebPrezenterViewController: UIViewController {
       webView.removeObserver(self, forKeyPath:  #keyPath(WKWebView.canGoForward))
     }
     
-    @objc private func dismissMe(_ sender: UIButton) {
-      dismiss(completion: nil)
-    }
-    
-    public func dismiss(completion: (() -> Void)? = nil) {
-      dismiss(animated: true, completion: completion)
-    }
-    
+        
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?,
       change: [NSKeyValueChangeKey : Any]?,
       context: UnsafeMutableRawPointer?) {
@@ -193,3 +205,27 @@ extension WebPrezenterViewController: WKNavigationDelegate {
       decisionHandler(.allow)
     }
 }
+
+@available(iOS 9.0, *)
+extension WebPrezenterViewController: CMProtocol {
+    
+    func getConset() {
+        
+    }
+    
+    func setConset() {
+        
+    }
+    
+    func showUI() {
+        UIApplication.topViewController()?.present(self, animated: true, completion: nil)
+    }
+    
+    func hideUI() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+
+

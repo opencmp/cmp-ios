@@ -13,12 +13,9 @@
 		14AD81D52FAD9CF2C065C61FB00C3B4F /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 4568279DE47DC3AB91598E1317503995 /* UIImage+Diff.m */; };
 		14C511527597E5846AB2627F791C7D8E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 716A9972B9D9103B54DB950893FAF104 /* QuartzCore.framework */; };
 		1804E0E29D2D23DD9338E1A418E0F8EC /* CMP-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4759202DC8B003C7509B6E3188CFAE89 /* CMP-dummy.m */; };
-		204484A0255D84DB00786BC0 /* UiViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2044849F255D84DB00786BC0 /* UiViewControllerPresenter.swift */; };
 		204484AF255D860300786BC0 /* UiView_settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204484AE255D860300786BC0 /* UiView_settings.swift */; };
 		204865E72566B03700B44D52 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204865E62566B03700B44D52 /* PermissionType.swift */; };
-		20A53CBC255D9D8300E0FED0 /* ConstantList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20A53CBB255D9D8300E0FED0 /* ConstantList.plist */; };
-		20A53CDB255D9EB900E0FED0 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A53CDA255D9EB900E0FED0 /* Preferences.swift */; };
-		20A53CEA255DA65100E0FED0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20A53CE9255DA65100E0FED0 /* Assets.xcassets */; };
+		20A2E0CF257529A400B34144 /* OpenCmpContex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A2E0CE257529A400B34144 /* OpenCmpContex.swift */; };
 		2DCFF0CE0BD295F1D46D3247F36B192C /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 235A78CFFA6D8B8D86CACD733531CB13 /* UIImage+Compare.m */; };
 		40039E0AF0D764360B1D4FC4F7950D2E /* UIApplication+StrictKeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 99A67367E018411D614EC8536A8A1C5B /* UIApplication+StrictKeyWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		4724BB71CBA4CB835F29BD2D1526BE72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD4ED544B638D07C7D755AF1C27116A /* Foundation.framework */; };
@@ -77,12 +74,9 @@
 		1212579136732A58EBE81E0CA1AA173F /* CMP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CMP.release.xcconfig; sourceTree = "<group>"; };
 		1AB908B4B9453065EDA528D4B16699E2 /* CMP-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CMP-umbrella.h"; sourceTree = "<group>"; };
 		1ADA6E655DC84D06359BD0ED5E36C783 /* FBSnapshotTestCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSnapshotTestCase-dummy.m"; sourceTree = "<group>"; };
-		2044849F255D84DB00786BC0 /* UiViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiViewControllerPresenter.swift; sourceTree = "<group>"; };
 		204484AE255D860300786BC0 /* UiView_settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiView_settings.swift; sourceTree = "<group>"; };
 		204865E62566B03700B44D52 /* PermissionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
-		20A53CBB255D9D8300E0FED0 /* ConstantList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ConstantList.plist; sourceTree = "<group>"; };
-		20A53CDA255D9EB900E0FED0 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
-		20A53CE9255DA65100E0FED0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		20A2E0CE257529A400B34144 /* OpenCmpContex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCmpContex.swift; sourceTree = "<group>"; };
 		235A78CFFA6D8B8D86CACD733531CB13 /* UIImage+Compare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Compare.m"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.m"; sourceTree = "<group>"; };
 		24B8743761ADE4CE15AF32D9F8C173F7 /* CMP-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CMP-prefix.pch"; sourceTree = "<group>"; };
 		277B6BE10C665F515606A22FD60C6DCC /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
@@ -183,6 +177,7 @@
 			children = (
 				204484A5255D84E500786BC0 /* Extention */,
 				A99F847BADB4361C45075905D9DD03D9 /* WebPrezenterViewController.swift */,
+				20A2E0CE257529A400B34144 /* OpenCmpContex.swift */,
 				204865E62566B03700B44D52 /* PermissionType.swift */,
 				4B4BBE54859D375D9959D13F3F0ABD6F /* Pod */,
 				925B67589E3B76635F05FAF02F611B32 /* Support Files */,
@@ -194,7 +189,6 @@
 		204484A5255D84E500786BC0 /* Extention */ = {
 			isa = PBXGroup;
 			children = (
-				2044849F255D84DB00786BC0 /* UiViewControllerPresenter.swift */,
 				204484AE255D860300786BC0 /* UiView_settings.swift */,
 			);
 			path = Extention;
@@ -260,9 +254,6 @@
 				1AB908B4B9453065EDA528D4B16699E2 /* CMP-umbrella.h */,
 				3B3FC6D9FA3A4093452A399FE812C739 /* CMP.debug.xcconfig */,
 				1212579136732A58EBE81E0CA1AA173F /* CMP.release.xcconfig */,
-				20A53CBB255D9D8300E0FED0 /* ConstantList.plist */,
-				20A53CDA255D9EB900E0FED0 /* Preferences.swift */,
-				20A53CE9255DA65100E0FED0 /* Assets.xcassets */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/CMP";
@@ -552,8 +543,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20A53CEA255DA65100E0FED0 /* Assets.xcassets in Resources */,
-				20A53CBC255D9D8300E0FED0 /* ConstantList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,10 +594,9 @@
 			files = (
 				1804E0E29D2D23DD9338E1A418E0F8EC /* CMP-dummy.m in Sources */,
 				204484AF255D860300786BC0 /* UiView_settings.swift in Sources */,
-				20A53CDB255D9EB900E0FED0 /* Preferences.swift in Sources */,
 				F4EA907216C8FE0079F3C9936C2516A8 /* WebPrezenterViewController.swift in Sources */,
 				204865E72566B03700B44D52 /* PermissionType.swift in Sources */,
-				204484A0255D84DB00786BC0 /* UiViewControllerPresenter.swift in Sources */,
+				20A2E0CF257529A400B34144 /* OpenCmpContex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
