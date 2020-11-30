@@ -18,9 +18,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func testAction(_ sender: Any) {
-      present()
+     // present()
+        info()
     }
     
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
