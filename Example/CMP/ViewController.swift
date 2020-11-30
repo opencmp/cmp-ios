@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         let filePath = Bundle.main.path(forResource: "cmp", ofType: "html")
                 do {
                     let jsContent = try String.init(contentsOfFile: filePath!, encoding: String.Encoding.utf8)
-                    let context = OpenCmpContex(domen: jsContent, key: "key")
+                    let context = OpenCmpContext(domen: jsContent, key: "key")
                     OpenCmp.config.activateWithContext(context: context)
                 }
                 catch let error as NSError{

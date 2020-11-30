@@ -8,7 +8,7 @@
 import Foundation
 
 
-public struct OpenCmpContex {
+public struct OpenCmpContext {
     
     let domen: String
     let key_registration: String
@@ -26,7 +26,7 @@ public class OpenCmp {
     private init() {}
 
     @available(iOS 9.0, *)
-    public func activateWithContext(context: OpenCmpContex) {
+    public func activateWithContext(context: OpenCmpContext) {
         let web = WebPrezenterViewController()
         web.request = context.domen
         web.view.backgroundColor = .clear

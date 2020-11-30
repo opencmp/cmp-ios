@@ -13,17 +13,24 @@ protocol CMProtocol: class {
 @available(iOS 9.0, *)
 class WebPrezenterViewController: UIViewController {
 
-    
-    
     enum WebViewKeyPath: String {
       case estimatedProgress
     }
     
     private lazy var container = UIView(frame: CGRect.zero)
     private lazy var progressView = UIProgressView(progressViewStyle: .bar)
-    public private(set) lazy var webView: WKWebView = WKWebView(frame: CGRect.zero)
+    public private(set) lazy var webView: WKWebView =  WKWebView(frame: UIScreen.main.bounds, configuration: config)
     
-    private lazy var toolbar:UIView = {
+    var config: WKWebViewConfiguration {
+        let config = WKWebViewConfiguration()
+            let source = "document.addEventListener('click', function(){ window.webkit.messageHandlers.iosListener.postMessage('click clack!'); })"
+            let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+            config.userContentController.addUserScript(script)
+            config.userContentController.add(self, name: "iosListener")
+        return config
+    }
+    
+    private lazy var toolbar: UIView = {
       let v = UIView(frame: CGRect.zero)
       v.isUserInteractionEnabled = true
       v.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
@@ -64,20 +71,20 @@ class WebPrezenterViewController: UIViewController {
       setupToolbar()
     }
     
+
     override public func viewDidLoad() {
-      super.viewDidLoad()
-      webView.navigationDelegate = self
+        super.viewDidLoad()
+        webView.navigationDelegate = self
         webView.loadHTMLString(request, baseURL: nil)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//            self.showUI()
-//          
-//        }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-//            self.hideUI()
-//        }
-      //webView.load(request)
+        // test function that present webview with configuration
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.showUI()
+            
+        }
+ 
     }
     
+        
     public override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
       addWebViewObservers()
@@ -89,10 +96,6 @@ class WebPrezenterViewController: UIViewController {
     }
     
     private func setupToolbar() {
-//      let closeButton = createImageButton(imageName: "close_button")
-//      closeButton.addTarget(self, action: #selector(dismissMe(_:)), for: .touchUpInside)
-//      closeButton.tintColor = .gray
-//      closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor).isActive = true
 
       let titleStackView = UIStackView(arrangedSubviews: [ urlLabel])
       titleStackView.axis = .vertical
@@ -109,15 +112,6 @@ class WebPrezenterViewController: UIViewController {
       toolbarStackView.trailingAnchor.constraint(equalTo: toolbar.trailingAnchor, constant:  -49).isActive = true
     }
       
-//    private func createImageButton(imageName: String) -> UIButton {
-//      guard let closeImage = UIImage(
-//        named: imageName,
-//        in: Bundle(for: WebPrezenterViewController.self),
-//        compatibleWith: nil) else { fatalError("No image named \(imageName) in the MHWebViewController.bundle") }
-//      let closeButton = UIButton(type: .custom)
-//      closeButton.setImage(closeImage, for: .normal)
-//      return closeButton
-//    }
     
     private func setupMainLayout() {
       view = UIView()
@@ -188,7 +182,14 @@ class WebPrezenterViewController: UIViewController {
   }
 
 @available(iOS 9.0, *)
-
+extension WebPrezenterViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        print("message: \(message.body)")
+       
+    }
+    
+}
+@available(iOS 9.0, *)
 extension WebPrezenterViewController: WKNavigationDelegate {
     
     public func webView(
@@ -205,6 +206,7 @@ extension WebPrezenterViewController: WKNavigationDelegate {
       decisionHandler(.allow)
     }
 }
+
 
 @available(iOS 9.0, *)
 extension WebPrezenterViewController: CMProtocol {
