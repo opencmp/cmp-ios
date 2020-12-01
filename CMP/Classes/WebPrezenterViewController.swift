@@ -16,17 +16,38 @@ class WebPrezenterViewController: UIViewController {
     enum WebViewKeyPath: String {
       case estimatedProgress
     }
+    enum CMProtocolEnum: String {
+        case getConset
+        case setConset
+        case showUI
+        case hideUI
+    }
     
     private lazy var container = UIView(frame: CGRect.zero)
     private lazy var progressView = UIProgressView(progressViewStyle: .bar)
     public private(set) lazy var webView: WKWebView =  WKWebView(frame: UIScreen.main.bounds, configuration: config)
     
-    var config: WKWebViewConfiguration {
+    private var config: WKWebViewConfiguration {
+        let contentController = WKUserContentController();
+        contentController.add(
+            self,
+            name: CMProtocolEnum.getConset.rawValue
+        )
+        contentController.add(
+            self,
+            name: CMProtocolEnum.setConset.rawValue
+        )
+        contentController.add(
+            self,
+            name: CMProtocolEnum.showUI.rawValue
+        )
+        contentController.add(
+            self,
+            name: CMProtocolEnum.hideUI.rawValue
+        )
+        
         let config = WKWebViewConfiguration()
-            let source = "document.addEventListener('click', function(){ window.webkit.messageHandlers.iosListener.postMessage('click clack!'); })"
-            let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
-            config.userContentController.addUserScript(script)
-            config.userContentController.add(self, name: "iosListener")
+        config.userContentController = contentController
         return config
     }
     
@@ -184,11 +205,24 @@ class WebPrezenterViewController: UIViewController {
 @available(iOS 9.0, *)
 extension WebPrezenterViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print("message: \(message.body)")
-       
+        if let cmpEnum = CMProtocolEnum(rawValue: message.name ) {
+            switch cmpEnum {
+            case .getConset:
+                getConset()
+            case .setConset:
+                setConset()
+            case .showUI:
+                showUI()
+            case .hideUI:
+                hideUI()
+            }
+        } else {
+            print("There isn't a CMP procol")
+        }
     }
     
 }
+
 @available(iOS 9.0, *)
 extension WebPrezenterViewController: WKNavigationDelegate {
     
