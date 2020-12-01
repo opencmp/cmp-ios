@@ -5,7 +5,7 @@ import WebKit
 
 protocol CMProtocol: class {
     func getConsent()
-    func setConsent()
+    func setConsent(info: [String: AnyObject])
     func showUI()
     func hideUI()
 }
@@ -210,7 +210,9 @@ extension WebPrezenterViewController: WKScriptMessageHandler {
             case .getConsent:
                 getConsent()
             case .setConsent:
-                setConsent()
+                if let result = convertStringToDictionary(text: message.body as? String ?? "")  {
+                setConsent(info: result)
+                }
             case .showUI:
                 showUI()
             case .hideUI:
@@ -241,15 +243,44 @@ extension WebPrezenterViewController: WKNavigationDelegate {
     }
 }
 
+@available(iOS 9.0, *)
+extension WebPrezenterViewController {
+    func convertStringToDictionary(text: String) -> [String: AnyObject]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:AnyObject]
+                return json
+            } catch {
+                print("error JSONSerialization")
+            }
+        }
+        return nil
+    }
+}
 
 @available(iOS 9.0, *)
 extension WebPrezenterViewController: CMProtocol {
     
     func getConsent() {
-        
+        let dict = UserDefaults.standard.dictionaryRepresentation()
+        let jsonData = try! JSONSerialization.data(withJSONObject: dict, options: [])
+        let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)!
+
+        // Send update to the page
+        self.webView.evaluateJavaScript("getConsent(\(jsonString))") { result, error in
+            if let jsError =  error  {
+                print(jsError)
+                return
+            }
+        }
     }
+
+   
     
-    func setConsent() {
+    func setConsent(info: [String: AnyObject]) {
+        if let ud = info.first {
+            UserDefaults.standard.set(ud.value, forKey: ud.key)
+        }
         
     }
     
