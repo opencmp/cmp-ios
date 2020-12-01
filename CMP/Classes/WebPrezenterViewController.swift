@@ -4,8 +4,8 @@ import WebKit
 
 
 protocol CMProtocol: class {
-    func getConset()
-    func setConset()
+    func getConsent()
+    func setConsent()
     func showUI()
     func hideUI()
 }
@@ -17,8 +17,8 @@ class WebPrezenterViewController: UIViewController {
       case estimatedProgress
     }
     enum CMProtocolEnum: String {
-        case getConset
-        case setConset
+        case getConsent
+        case setConsent
         case showUI
         case hideUI
     }
@@ -31,11 +31,11 @@ class WebPrezenterViewController: UIViewController {
         let contentController = WKUserContentController();
         contentController.add(
             self,
-            name: CMProtocolEnum.getConset.rawValue
+            name: CMProtocolEnum.getConsent.rawValue
         )
         contentController.add(
             self,
-            name: CMProtocolEnum.setConset.rawValue
+            name: CMProtocolEnum.setConsent.rawValue
         )
         contentController.add(
             self,
@@ -207,10 +207,10 @@ extension WebPrezenterViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if let cmpEnum = CMProtocolEnum(rawValue: message.name ) {
             switch cmpEnum {
-            case .getConset:
-                getConset()
-            case .setConset:
-                setConset()
+            case .getConsent:
+                getConsent()
+            case .setConsent:
+                setConsent()
             case .showUI:
                 showUI()
             case .hideUI:
@@ -245,11 +245,11 @@ extension WebPrezenterViewController: WKNavigationDelegate {
 @available(iOS 9.0, *)
 extension WebPrezenterViewController: CMProtocol {
     
-    func getConset() {
+    func getConsent() {
         
     }
     
-    func setConset() {
+    func setConsent() {
         
     }
     
