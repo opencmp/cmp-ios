@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		159985B97E4171526AA246B0 /* Pods_CMP_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCC5CBD308B53B421E5D9F1 /* Pods_CMP_Example.framework */; };
-		20A2E0D525752E8600B34144 /* cmp.html in Resources */ = {isa = PBXBuildFile; fileRef = 20A2E0D425752E8600B34144 /* cmp.html */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -31,7 +30,6 @@
 /* Begin PBXFileReference section */
 		05D9EB41BF1D5045D8D7FA5D /* Pods-CMP_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMP_Example.release.xcconfig"; path = "Target Support Files/Pods-CMP_Example/Pods-CMP_Example.release.xcconfig"; sourceTree = "<group>"; };
 		14393CD6CC31B8FA7DC0A436 /* Pods-CMP_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMP_Example.debug.xcconfig"; path = "Target Support Files/Pods-CMP_Example/Pods-CMP_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		20A2E0D425752E8600B34144 /* cmp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = cmp.html; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* CMP_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CMP_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				20A2E0D425752E8600B34144 /* cmp.html */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -253,7 +250,6 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				20A2E0D525752E8600B34144 /* cmp.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
