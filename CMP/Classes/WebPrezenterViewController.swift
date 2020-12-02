@@ -25,7 +25,8 @@ class WebPrezenterViewController: UIViewController {
     
     private lazy var container = UIView(frame: CGRect.zero)
     private lazy var progressView = UIProgressView(progressViewStyle: .bar)
-    public private(set) lazy var webView: WKWebView =  WKWebView(frame: UIScreen.main.bounds, configuration: config)
+    private(set) lazy var webView: WKWebView =  WKWebView(frame: UIScreen.main.bounds, configuration: config)
+    private let settings = OpenCmpSettings()
     
     private var config: WKWebViewConfiguration {
         let contentController = WKUserContentController();
@@ -278,10 +279,11 @@ extension WebPrezenterViewController: CMProtocol {
    
     
     func setConsent(info: [String: AnyObject]) {
-        if let ud = info.first {
-            UserDefaults.standard.set(ud.value, forKey: ud.key)
-        }
-        
+        do {
+            try settings.savePropertyList(info)
+        } catch {
+            print(error)
+        }        
     }
     
     func showUI() {
