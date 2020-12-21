@@ -1,10 +1,3 @@
-//
-//  OpenCmpContex.swift
-//  CMP
-//
-//  Created by Роман Чугай on 30.11.2020.
-//
-
 import Foundation
 
 

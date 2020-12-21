@@ -1,9 +1,3 @@
-//
-//  OpenCmpSettings.swift
-//  CMP
-//
-//  Created by Роман Чугай on 02.12.2020.
-//
 
 import UIKit
 

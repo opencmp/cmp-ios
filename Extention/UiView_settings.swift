@@ -1,9 +1,3 @@
-//
-//  UiView_settings.swift
-//  CMP
-//
-//  Created by Роман Чугай on 12.11.2020.
-//
 import Foundation
 import UIKit
 

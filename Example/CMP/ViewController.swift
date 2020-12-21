@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  CMP
-//
-//  Created by Kovtun Dmitriy on 11/12/2020.
-//  Copyright (c) 2020 Kovtun Dmitriy. All rights reserved.
-//
 
 import UIKit
 import CMP

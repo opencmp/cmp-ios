@@ -1,9 +1,3 @@
-//
-//  PermissionType.swift
-//  CMP
-//
-//  Created by Роман Чугай on 19.11.2020.
-//
 
 import Foundation
 import AVKit
