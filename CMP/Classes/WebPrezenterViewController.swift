@@ -48,6 +48,9 @@ class WebPrezenterViewController: UIViewController {
         )
         
         let config = WKWebViewConfiguration()
+        let prefs = WKPreferences()
+        prefs.javaScriptEnabled = true
+        config.preferences = prefs
         config.userContentController = contentController
         return config
     }
