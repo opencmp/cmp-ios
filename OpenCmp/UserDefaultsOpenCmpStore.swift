@@ -1,12 +1,12 @@
-
 import UIKit
+
 protocol OpenCmpStore {
     func clear()
     func update(values: NSDictionary)
     func getConsentString() -> String
 }
 
-class UserDefaultsOpenCmpStore: OpenCmpStore {
+public class UserDefaultsOpenCmpStore: OpenCmpStore {
     func clear() {
         
     }
@@ -16,8 +16,9 @@ class UserDefaultsOpenCmpStore: OpenCmpStore {
     }
     
     func getConsentString() -> String {
-        
+        return ""
     }
     
 
 }
+

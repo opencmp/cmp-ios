@@ -10,6 +10,7 @@ public class OpenCmp {
                 let jsContent = try String.init(contentsOfFile: filePath, encoding: String.Encoding.utf8)
                 let web = WebPrezenterViewController()
                 web.cmpSettings = context
+                web.cmpSettings.domen = jsContent.replacingOccurrences(of: CMPStaticList.domain, with: context.domen)
                 web.view.backgroundColor = .clear
                 web.modalTransitionStyle = .crossDissolve
                 web.modalPresentationStyle = .fullScreen

@@ -80,8 +80,7 @@ class WebPrezenterViewController: UIViewController {
 
     private let topMargin:CGFloat = 10.0
     private var lastLocation:CGPoint = .zero
-    public var settings: OpenCmpSettings! = nil
-   
+    var settings = UserDefaultsOpenCmpStore()
     
     var detail:String? {
       didSet {
@@ -283,7 +282,7 @@ extension WebPrezenterViewController: CMProtocol {
     
     func setConsent(info: [String: AnyObject]) {
         do {
-            try settings.savePropertyList(info)
+           // try settings.savePropertyList(info)
         } catch {
             print(error)
         }        
@@ -291,7 +290,7 @@ extension WebPrezenterViewController: CMProtocol {
     
     func showUI() {
         UIApplication.topViewController()?.present(self, animated: true, completion: nil)
-        cmpSettings.setChangesListener("lll")
+       // cmpSettings.setChangesListener("lll")
     }
     
     func hideUI() {

@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
     
     func testWithHtmlFile() {
-        let context = OpenCmpConfig(domen: "jsContent", setErrorHandler: { result in
+        let context = OpenCmpConfig("traffective.com", setErrorHandler: { result in
             print(result)
         }, setChangesListener: { value in
            print(value)
