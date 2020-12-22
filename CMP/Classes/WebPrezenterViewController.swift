@@ -25,8 +25,9 @@ class WebPrezenterViewController: UIViewController {
     private lazy var container = UIView(frame: CGRect.zero)
     private lazy var progressView = UIProgressView(progressViewStyle: .bar)
     private(set) lazy var webView: WKWebView =  WKWebView(frame: UIScreen.main.bounds, configuration: config)
-    private let settings = OpenCmpSettings()
+    var cmpSettings: OpenCmpConfig!
     
+
     private var config: WKWebViewConfiguration {
         let contentController = WKUserContentController();
         contentController.add(
@@ -79,7 +80,7 @@ class WebPrezenterViewController: UIViewController {
 
     private let topMargin:CGFloat = 10.0
     private var lastLocation:CGPoint = .zero
-    public var request: String!
+    public var settings: OpenCmpSettings! = nil
    
     
     var detail:String? {
@@ -99,7 +100,7 @@ class WebPrezenterViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         webView.navigationDelegate = self
-        webView.loadHTMLString(request, baseURL: nil)
+        webView.loadHTMLString(cmpSettings.domen, baseURL: nil)
         // test function that present webview with configuration
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.showUI()
@@ -290,6 +291,7 @@ extension WebPrezenterViewController: CMProtocol {
     
     func showUI() {
         UIApplication.topViewController()?.present(self, animated: true, completion: nil)
+        cmpSettings.setChangesListener("lll")
     }
     
     func hideUI() {

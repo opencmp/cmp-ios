@@ -15,8 +15,12 @@ class ViewController: UIViewController {
     
     
     func testWithHtmlFile() {
-        let context = OpenCmpContext(domen: "jsContent", key: "key")
-        OpenCmp.config.activateWithContext(context: context)
+        let context = OpenCmpConfig(domen: "jsContent", setErrorHandler: { result in
+            print(result)
+        }, setChangesListener: { value in
+           print(value)
+        })
+        OpenCmp.initialize(self, context)
     }
 
 }

@@ -1,5 +1,5 @@
 
-import UIKit
+import Foundation
 
 struct CMPStaticList {
     static let identifier = "org.cocoapods.CMP"
@@ -7,7 +7,6 @@ struct CMPStaticList {
     static let ofType = "html"
     static let plist = "CmpSettings.plist"
 }
-
 
 final class OpenCmpSettings {
     
