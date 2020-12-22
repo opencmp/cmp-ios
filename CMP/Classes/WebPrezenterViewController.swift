@@ -22,10 +22,19 @@ class WebPrezenterViewController: UIViewController {
         case hideUI
     }
     
+    private let topMargin:CGFloat = 10.0
+    private var lastLocation:CGPoint = .zero
     private lazy var container = UIView(frame: CGRect.zero)
     private lazy var progressView = UIProgressView(progressViewStyle: .bar)
     private(set) lazy var webView: WKWebView =  WKWebView(frame: UIScreen.main.bounds, configuration: config)
     var cmpSettings: OpenCmpConfig!
+    var userDefaultSettings: OpenCmpStore!
+    
+    var detail:String? {
+      didSet {
+        urlLabel.text = detail
+      }
+    }
     
 
     private var config: WKWebViewConfiguration {
@@ -78,17 +87,7 @@ class WebPrezenterViewController: UIViewController {
       return lbl
     }()
 
-    private let topMargin:CGFloat = 10.0
-    private var lastLocation:CGPoint = .zero
-    var settings = UserDefaultsOpenCmpStore()
-    
-    var detail:String? {
-      didSet {
-        urlLabel.text = detail
-      }
-    }
-    
-    
+  
     override public func loadView() {
       super.loadView()
       setupMainLayout()
@@ -265,12 +264,9 @@ extension WebPrezenterViewController {
 extension WebPrezenterViewController: CMProtocol {
     
     func getConsent() {
-        let dict = UserDefaults.standard.dictionaryRepresentation()
-        let jsonData = try! JSONSerialization.data(withJSONObject: dict, options: [])
-        let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)!
-
+         let consent = userDefaultSettings.getConsentString()
         // Send update to the page
-        self.webView.evaluateJavaScript("getConsent(\(jsonString))") { result, error in
+        self.webView.evaluateJavaScript("getConsent(\(consent))") { result, error in
             if let jsError =  error  {
                 print(jsError)
                 return
@@ -281,16 +277,11 @@ extension WebPrezenterViewController: CMProtocol {
    
     
     func setConsent(info: [String: AnyObject]) {
-        do {
-           // try settings.savePropertyList(info)
-        } catch {
-            print(error)
-        }        
+        userDefaultSettings.update(values: info as NSDictionary)
     }
     
     func showUI() {
         UIApplication.topViewController()?.present(self, animated: true, completion: nil)
-       // cmpSettings.setChangesListener("lll")
     }
     
     func hideUI() {
