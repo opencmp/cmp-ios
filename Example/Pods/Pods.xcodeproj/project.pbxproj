@@ -13,12 +13,12 @@
 		14AD81D52FAD9CF2C065C61FB00C3B4F /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 4568279DE47DC3AB91598E1317503995 /* UIImage+Diff.m */; };
 		14C511527597E5846AB2627F791C7D8E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 716A9972B9D9103B54DB950893FAF104 /* QuartzCore.framework */; };
 		1804E0E29D2D23DD9338E1A418E0F8EC /* CMP-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4759202DC8B003C7509B6E3188CFAE89 /* CMP-dummy.m */; };
+		2018B381259151CC003B5312 /* UserDefaultsOpenCmpStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2018B380259151CC003B5312 /* UserDefaultsOpenCmpStore.swift */; };
 		204484AF255D860300786BC0 /* UiView_settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204484AE255D860300786BC0 /* UiView_settings.swift */; };
 		204865E72566B03700B44D52 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204865E62566B03700B44D52 /* PermissionType.swift */; };
-		204953B025778DBA00213911 /* CmpSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 204953AF25778DBA00213911 /* CmpSettings.plist */; };
 		204953BC2577BD0100213911 /* OpenCmpSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204953BB2577BD0100213911 /* OpenCmpSettings.swift */; };
 		207C3ABA2576723F00095890 /* cmp.html in Resources */ = {isa = PBXBuildFile; fileRef = 207C3A9E2576582B00095890 /* cmp.html */; };
-		20A2E0CF257529A400B34144 /* OpenCmpContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A2E0CE257529A400B34144 /* OpenCmpContext.swift */; };
+		20A2E0CF257529A400B34144 /* OpenCmpConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A2E0CE257529A400B34144 /* OpenCmpConfig.swift */; };
 		20A2E0FC2575570300B34144 /* OpenCmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A2E0FB2575570300B34144 /* OpenCmp.swift */; };
 		2DCFF0CE0BD295F1D46D3247F36B192C /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 235A78CFFA6D8B8D86CACD733531CB13 /* UIImage+Compare.m */; };
 		40039E0AF0D764360B1D4FC4F7950D2E /* UIApplication+StrictKeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 99A67367E018411D614EC8536A8A1C5B /* UIApplication+StrictKeyWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -78,12 +78,12 @@
 		1212579136732A58EBE81E0CA1AA173F /* CMP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CMP.release.xcconfig; sourceTree = "<group>"; };
 		1AB908B4B9453065EDA528D4B16699E2 /* CMP-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CMP-umbrella.h"; sourceTree = "<group>"; };
 		1ADA6E655DC84D06359BD0ED5E36C783 /* FBSnapshotTestCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSnapshotTestCase-dummy.m"; sourceTree = "<group>"; };
+		2018B380259151CC003B5312 /* UserDefaultsOpenCmpStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsOpenCmpStore.swift; sourceTree = "<group>"; };
 		204484AE255D860300786BC0 /* UiView_settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiView_settings.swift; sourceTree = "<group>"; };
 		204865E62566B03700B44D52 /* PermissionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
-		204953AF25778DBA00213911 /* CmpSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CmpSettings.plist; sourceTree = "<group>"; };
 		204953BB2577BD0100213911 /* OpenCmpSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCmpSettings.swift; sourceTree = "<group>"; };
 		207C3A9E2576582B00095890 /* cmp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = cmp.html; sourceTree = "<group>"; };
-		20A2E0CE257529A400B34144 /* OpenCmpContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCmpContext.swift; sourceTree = "<group>"; };
+		20A2E0CE257529A400B34144 /* OpenCmpConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCmpConfig.swift; sourceTree = "<group>"; };
 		20A2E0FB2575570300B34144 /* OpenCmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCmp.swift; sourceTree = "<group>"; };
 		235A78CFFA6D8B8D86CACD733531CB13 /* UIImage+Compare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Compare.m"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.m"; sourceTree = "<group>"; };
 		24B8743761ADE4CE15AF32D9F8C173F7 /* CMP-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CMP-prefix.pch"; sourceTree = "<group>"; };
@@ -206,7 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				207C3A9E2576582B00095890 /* cmp.html */,
-				204953AF25778DBA00213911 /* CmpSettings.plist */,
 				204953BB2577BD0100213911 /* OpenCmpSettings.swift */,
 			);
 			path = CMPSettings;
@@ -216,8 +215,9 @@
 			isa = PBXGroup;
 			children = (
 				204953C12577BD1600213911 /* CMPSettings */,
-				20A2E0CE257529A400B34144 /* OpenCmpContext.swift */,
+				20A2E0CE257529A400B34144 /* OpenCmpConfig.swift */,
 				20A2E0FB2575570300B34144 /* OpenCmp.swift */,
+				2018B380259151CC003B5312 /* UserDefaultsOpenCmpStore.swift */,
 			);
 			path = OpenCmp;
 			sourceTree = "<group>";
@@ -571,7 +571,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				204953B025778DBA00213911 /* CmpSettings.plist in Resources */,
 				207C3ABA2576723F00095890 /* cmp.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -628,7 +627,8 @@
 				204953BC2577BD0100213911 /* OpenCmpSettings.swift in Sources */,
 				F4EA907216C8FE0079F3C9936C2516A8 /* WebPrezenterViewController.swift in Sources */,
 				204865E72566B03700B44D52 /* PermissionType.swift in Sources */,
-				20A2E0CF257529A400B34144 /* OpenCmpContext.swift in Sources */,
+				20A2E0CF257529A400B34144 /* OpenCmpConfig.swift in Sources */,
+				2018B381259151CC003B5312 /* UserDefaultsOpenCmpStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

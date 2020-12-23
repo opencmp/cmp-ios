@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  CMP
-//
-//  Created by Kovtun Dmitriy on 11/12/2020.
-//  Copyright (c) 2020 Kovtun Dmitriy. All rights reserved.
-//
 
 import UIKit
 import CMP
@@ -22,8 +15,12 @@ class ViewController: UIViewController {
     
     
     func testWithHtmlFile() {
-        let context = OpenCmpContext(domen: "jsContent", key: "key")
-        OpenCmp.config.activateWithContext(context: context)
+        let context = OpenCmpConfig("traffective.com", setErrorHandler: { result in
+            print(result)
+        }, setChangesListener: { value in
+           print(value)
+        })
+        OpenCmp.initialize(self, context)
     }
 
 }
