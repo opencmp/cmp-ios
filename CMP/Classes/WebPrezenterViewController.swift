@@ -4,7 +4,7 @@ import WebKit
 
 protocol CMProtocol: class {
     func getConsent()
-    func setConsent(info: [String: AnyObject])
+    func setConsent(info: [String: Any])
     func showUI()
     func hideUI()
 }
@@ -28,7 +28,7 @@ class WebPrezenterViewController: UIViewController {
     private lazy var progressView = UIProgressView(progressViewStyle: .bar)
     private(set) lazy var webView: WKWebView =  WKWebView(frame: UIScreen.main.bounds, configuration: config)
     var cmpSettings: OpenCmpConfig!
-    var userDefaultSettings: OpenCmpStore!
+    var userDefaultSettings: UserDefaultsOpenCmpStore!
     
     var detail:String? {
       didSet {
@@ -102,9 +102,7 @@ class WebPrezenterViewController: UIViewController {
         // test function that present webview with configuration
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.showUI()
-            
         }
- 
     }
     
         
@@ -275,12 +273,12 @@ extension WebPrezenterViewController: CMProtocol {
     }
 
    
-    
-    func setConsent(info: [String: AnyObject]) {
-        userDefaultSettings.update(values: info as NSDictionary)
+    func setConsent(info: [String: Any]) {
+        userDefaultSettings.update(values: info)
     }
     
     func showUI() {
+       // userDefaultSettings.tester()
         UIApplication.topViewController()?.present(self, animated: true, completion: nil)
     }
     
