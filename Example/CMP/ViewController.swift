@@ -1,24 +1,24 @@
-//
-//  ViewController.swift
-//  CMP
-//
-//  Created by Kovtun Dmitriy on 11/12/2020.
-//  Copyright (c) 2020 Kovtun Dmitriy. All rights reserved.
-//
 
+import CMP
 import UIKit
 
 class ViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func testAction(_ sender: Any) {
+        let config = OpenCmpConfig(
+            "traffective.com",
+            setStorageName: "open_cmp.storage",
+            setErrorHandler: { result in
+                print(result)
+            }, setChangesListener: { value in
+                print(value)
+            })
+        
+        OpenCmp.initialize(self, config)
     }
 
+    
 }
-
