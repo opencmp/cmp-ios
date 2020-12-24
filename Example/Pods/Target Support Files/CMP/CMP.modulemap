@@ -1,0 +1,6 @@
+framework module CMP {
+  umbrella header "CMP-umbrella.h"
+
+  export *
+  module * { export * }
+}
