@@ -9,19 +9,17 @@ protocol OpenCmpStore {
 
 public class UserDefaultsOpenCmpStore: OpenCmpStore {
     private let userDefaultsName: String?
-    private var cmpSettings: OpenCmpConfig!
     private let userDefaults: UserDefaults?
     private var observer: NSKeyValueObservation?
     var value:  [String : Any]? = [:]
 
     required init(userDefaultsType: String, cmpSettings: OpenCmpConfig) {
         self.userDefaultsName = userDefaultsType
-        self.cmpSettings = cmpSettings
         self.userDefaults = userDefaultsType == "" ? UserDefaults.standard : UserDefaults(suiteName: self.userDefaultsName)!
         observer = userDefaults?.observe(\.cmpSettings, options: [.initial, .new], changeHandler: { [self] (defaults, change) in
             guard let change = change.newValue else { return }
             value = change
-            self.cmpSettings.setChangesListener(self)
+            cmpSettings.setChangesListener(self)
         })
     }
     

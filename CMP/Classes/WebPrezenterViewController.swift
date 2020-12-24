@@ -3,7 +3,7 @@ import WebKit
 
 
 protocol CMProtocol: class {
-    func getConsent()
+    func getConsent(promiseId: String)
     func setConsent(info: [String: Any])
     func showUI()
     func hideUI()
@@ -18,8 +18,8 @@ class WebPrezenterViewController: UIViewController {
     enum CMProtocolEnum: String {
         case getConsent
         case setConsent
-        case showUI
-        case hideUI
+        case showUi
+        case hideUi
     }
     
     private let topMargin:CGFloat = 10.0
@@ -49,11 +49,11 @@ class WebPrezenterViewController: UIViewController {
         )
         contentController.add(
             self,
-            name: CMProtocolEnum.showUI.rawValue
+            name: CMProtocolEnum.showUi.rawValue
         )
         contentController.add(
             self,
-            name: CMProtocolEnum.hideUI.rawValue
+            name: CMProtocolEnum.hideUi.rawValue
         )
         
         let config = WKWebViewConfiguration()
@@ -100,9 +100,9 @@ class WebPrezenterViewController: UIViewController {
         webView.navigationDelegate = self
         webView.loadHTMLString(cmpSettings.domen, baseURL: nil)
         // test function that present webview with configuration
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.showUI()
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//            self.showUI()
+//        }
     }
     
         
@@ -208,14 +208,15 @@ extension WebPrezenterViewController: WKScriptMessageHandler {
         if let cmpEnum = CMProtocolEnum(rawValue: message.name ) {
             switch cmpEnum {
             case .getConsent:
-                getConsent()
+                let promiseId = message.body as? String ?? ""
+                getConsent(promiseId: promiseId)
             case .setConsent:
                 if let result = convertStringToDictionary(text: message.body as? String ?? "")  {
                 setConsent(info: result)
                 }
-            case .showUI:
+            case .showUi:
                 showUI()
-            case .hideUI:
+            case .hideUi:
                 hideUI()
             }
         } else {
@@ -261,17 +262,16 @@ extension WebPrezenterViewController {
 @available(iOS 9.0, *)
 extension WebPrezenterViewController: CMProtocol {
     
-    func getConsent() {
-         let consent = userDefaultSettings.getConsentString()
-        // Send update to the page
-        self.webView.evaluateJavaScript("getConsent(\(consent))") { result, error in
+    func getConsent(promiseId: String) {
+        let consent = userDefaultSettings.getConsentString()
+//        // Send update to the page
+        self.webView.evaluateJavaScript("trfCmpResolvePromise('\(promiseId)', '\(consent)')") { result, error in
             if let jsError =  error  {
                 print(jsError)
                 return
             }
         }
     }
-
    
     func setConsent(info: [String: Any]) {
         userDefaultSettings.update(values: info)
@@ -279,11 +279,17 @@ extension WebPrezenterViewController: CMProtocol {
     
     func showUI() {
        // userDefaultSettings.tester()
-        UIApplication.topViewController()?.present(self, animated: true, completion: nil)
+        DispatchQueue.main.async { [weak self] in
+            if let strongSelf = self, ((UIApplication.topViewController() as? WebPrezenterViewController) == nil) {
+                UIApplication.topViewController()?.present(strongSelf, animated: true, completion: nil)
+            }
+        }
     }
     
     func hideUI() {
-        dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }
     }
     
 }
