@@ -5,9 +5,6 @@ import UIKit
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-
-    @IBAction func testAction(_ sender: Any) {
         let config = OpenCmpConfig(
             "traffective.com",
             setStorageName: "open_cmp.storage",
@@ -16,9 +13,15 @@ class ViewController: UIViewController {
             }, setChangesListener: { chamge in
                 print("value", chamge.value)
             })
-        
         OpenCmp.initialize(self, config)
+        
     }
 
+    @IBAction func showPopup(_ sender: Any) {
+
+    }
+    @IBAction func cleanData(_ sender: Any) {
+    }
+    
     
 }
