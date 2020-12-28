@@ -247,7 +247,9 @@ extension WebPrezenterViewController: WKNavigationDelegate {
 @available(iOS 9.0, *)
 extension WebPrezenterViewController {
     func convertStringToDictionary(text: String) -> [String: AnyObject]? {
+        
         if let data = text.data(using: .utf8) {
+            
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:AnyObject]
                 return json
@@ -264,7 +266,7 @@ extension WebPrezenterViewController: CMProtocol {
     
     func getConsent(promiseId: String) {
         let consent = userDefaultSettings.getConsentString()
-//        // Send update to the page
+        // Send update to the page
         self.webView.evaluateJavaScript("trfCmpResolvePromise('\(promiseId)', '\(consent)')") { result, error in
             if let jsError =  error  {
                 print(jsError)

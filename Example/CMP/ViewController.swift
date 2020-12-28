@@ -13,8 +13,8 @@ class ViewController: UIViewController {
             setStorageName: "open_cmp.storage",
             setErrorHandler: { result in
                 print(result)
-            }, setChangesListener: { value in
-                print(value)
+            }, setChangesListener: { chamge in
+                print("value", chamge.value)
             })
         
         OpenCmp.initialize(self, config)

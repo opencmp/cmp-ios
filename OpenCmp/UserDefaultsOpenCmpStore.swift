@@ -11,14 +11,16 @@ public class UserDefaultsOpenCmpStore: OpenCmpStore {
     private let userDefaultsName: String?
     private let userDefaults: UserDefaults?
     private var observer: NSKeyValueObservation?
-    var value:  [String : Any]? = [:]
+    public var value:  [String : Any]? = [:]
 
     required init(userDefaultsType: String, cmpSettings: OpenCmpConfig) {
         self.userDefaultsName = userDefaultsType
         self.userDefaults = userDefaultsType == "" ? UserDefaults.standard : UserDefaults(suiteName: self.userDefaultsName)!
-        observer = userDefaults?.observe(\.cmpSettings, options: [.initial, .new], changeHandler: { [self] (defaults, change) in
+       
+        observer = userDefaults?.observe(\.cmpSettings, options: [ .new], changeHandler: { [self] (defaults, change) in
             guard let change = change.newValue else { return }
-            value = change
+            guard let dict = NSKeyedUnarchiver.unarchiveObject(with: change) as? [String : Any]? else { return }
+            value = dict
             cmpSettings.setChangesListener(self)
         })
     }
@@ -27,12 +29,7 @@ public class UserDefaultsOpenCmpStore: OpenCmpStore {
         observer?.invalidate()
     }
     
-    
-//    func tester() {
-//        update(values: ["fff": "sss"])
-//        //userDefaults?.removeObject(forKey: CMPStaticList.cmpSettings)
-//    }
-    
+        
     func clear() {
         userDefaults?.removeObject(forKey: CMPStaticList.cmpSettings)
     }
@@ -56,7 +53,7 @@ public class UserDefaultsOpenCmpStore: OpenCmpStore {
 
 
 private extension UserDefaults {
-    @objc dynamic var cmpSettings: [String : Any]? {
-        return dictionary(forKey: CMPStaticList.cmpSettings)
+    @objc dynamic var cmpSettings: Data {
+        return data(forKey: CMPStaticList.cmpSettings)!
     }
 }
