@@ -265,7 +265,10 @@ extension WebPrezenterViewController {
 extension WebPrezenterViewController: CMProtocol {
     
     func getConsent(promiseId: String) {
-        let consent = userDefaultSettings.getConsentString()
+        var consent = userDefaultSettings.getConsentString()
+        if consent == "" {
+            consent = "{}"
+        }
         // Send update to the page
         self.webView.evaluateJavaScript("trfCmpResolvePromise('\(promiseId)', '\(consent)')") { result, error in
             if let jsError =  error  {
