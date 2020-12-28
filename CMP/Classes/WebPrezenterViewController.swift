@@ -28,14 +28,8 @@ class WebPrezenterViewController: UIViewController {
     private lazy var progressView = UIProgressView(progressViewStyle: .bar)
     private(set) lazy var webView: WKWebView =  WKWebView(frame: UIScreen.main.bounds, configuration: config)
     var cmpSettings: OpenCmpConfig!
-    var userDefaultSettings: UserDefaultsOpenCmpStore!
-    
-    var detail:String? {
-      didSet {
-        urlLabel.text = detail
-      }
-    }
-    
+    var userDefaultSettings: OpenCmpStore!
+        
 
     private var config: WKWebViewConfiguration {
         let contentController = WKUserContentController();
@@ -99,10 +93,6 @@ class WebPrezenterViewController: UIViewController {
         super.viewDidLoad()
         webView.navigationDelegate = self
         webView.loadHTMLString(cmpSettings.domen, baseURL: nil)
-        // test function that present webview with configuration
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//            self.showUI()
-//        }
     }
     
         
@@ -246,10 +236,16 @@ extension WebPrezenterViewController: WKNavigationDelegate {
 
 @available(iOS 9.0, *)
 extension WebPrezenterViewController {
+    
+    func clean() {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.hideUI()
+            self.userDefaultSettings.clear()
+        }
+    }
+    
     func convertStringToDictionary(text: String) -> [String: Any]? {
-        
         if let data = text.data(using: .utf8) {
-            
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]
                 return json
@@ -283,7 +279,6 @@ extension WebPrezenterViewController: CMProtocol {
     }
     
     func showUI() {
-       // userDefaultSettings.tester()
         DispatchQueue.main.async { [weak self] in
             if let strongSelf = self, ((UIApplication.topViewController() as? WebPrezenterViewController) == nil) {
                 UIApplication.topViewController()?.present(strongSelf, animated: true, completion: nil)

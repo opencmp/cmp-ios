@@ -11,7 +11,7 @@ public class UserDefaultsOpenCmpStore: OpenCmpStore {
     private let userDefaultsName: String?
     private let userDefaults: UserDefaults?
     private var observer: NSKeyValueObservation?
-    public var value:  [String : Any]? = [:]
+    public var value: [String : Any]? = [:]
 
     required init(userDefaultsType: String, cmpSettings: OpenCmpConfig) {
         self.userDefaultsName = userDefaultsType
@@ -29,7 +29,6 @@ public class UserDefaultsOpenCmpStore: OpenCmpStore {
         observer?.invalidate()
     }
     
-        
     func clear() {
         userDefaults?.removeObject(forKey: CMPStaticList.cmpSettings)
     }

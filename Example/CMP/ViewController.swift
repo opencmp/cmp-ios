@@ -18,10 +18,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func showPopup(_ sender: Any) {
+        OpenCmp.showUI()
 
     }
     @IBAction func cleanData(_ sender: Any) {
+        OpenCmp.cleanUserDefaults()
     }
-    
     
 }
