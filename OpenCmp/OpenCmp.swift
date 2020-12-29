@@ -15,10 +15,12 @@ public class OpenCmp {
                 web.modalTransitionStyle = .crossDissolve
                 web.modalPresentationStyle = .fullScreen
             }  catch let error as NSError{
-                print(error.debugDescription)
+                let err: Error = CmpError.loadingHtml(errorDescription: error.debugDescription)
+                CmpErrorReader.shared.handleError(err)
             }
         }
     }
+    
     public static func showUI() {
         WebPrezenterShared.shared.showUI()
     }

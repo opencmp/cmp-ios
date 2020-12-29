@@ -282,13 +282,21 @@ extension WebPrezenterViewController: CMProtocol {
         DispatchQueue.main.async { [weak self] in
             if let strongSelf = self, ((UIApplication.topViewController() as? WebPrezenterViewController) == nil) {
                 UIApplication.topViewController()?.present(strongSelf, animated: true, completion: nil)
+            } else {
+                let err: Error = CmpError.uiError(type: .showUiError)
+                CmpErrorReader.shared.handleError(err)
             }
         }
     }
     
     func hideUI() {
         DispatchQueue.main.async { [weak self] in
-            self?.dismiss(animated: true, completion: nil)
+            if let strongSelf = self {
+                strongSelf.dismiss(animated: true, completion: nil)
+            } else {
+                let err: Error = CmpError.uiError(type: .hideUiError)
+                CmpErrorReader.shared.handleError(err)
+            }
         }
     }
     
