@@ -24,7 +24,7 @@ public class OpenCmp {
     }
     
     public static func cleanUserDefaults() {
-        WebPrezenterShared.shared.clear()
+        WebPrezenterShared.shared.clean()
     }
 }
 
