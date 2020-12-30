@@ -15,9 +15,9 @@
 		1804E0E29D2D23DD9338E1A418E0F8EC /* CMP-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4759202DC8B003C7509B6E3188CFAE89 /* CMP-dummy.m */; };
 		2018B381259151CC003B5312 /* UserDefaultsOpenCmpStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2018B380259151CC003B5312 /* UserDefaultsOpenCmpStore.swift */; };
 		204484AF255D860300786BC0 /* UiView_settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204484AE255D860300786BC0 /* UiView_settings.swift */; };
-		204865E72566B03700B44D52 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204865E62566B03700B44D52 /* PermissionType.swift */; };
 		204953BC2577BD0100213911 /* OpenCmpSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204953BB2577BD0100213911 /* OpenCmpSettings.swift */; };
 		207C3ABA2576723F00095890 /* cmp.html in Resources */ = {isa = PBXBuildFile; fileRef = 207C3A9E2576582B00095890 /* cmp.html */; };
+		208A097B259B2EAE008573A7 /* OpenCmpError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208A097A259B2EAE008573A7 /* OpenCmpError.swift */; };
 		20A2E0CF257529A400B34144 /* OpenCmpConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A2E0CE257529A400B34144 /* OpenCmpConfig.swift */; };
 		20A2E0FC2575570300B34144 /* OpenCmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A2E0FB2575570300B34144 /* OpenCmp.swift */; };
 		2DCFF0CE0BD295F1D46D3247F36B192C /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 235A78CFFA6D8B8D86CACD733531CB13 /* UIImage+Compare.m */; };
@@ -80,9 +80,9 @@
 		1ADA6E655DC84D06359BD0ED5E36C783 /* FBSnapshotTestCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSnapshotTestCase-dummy.m"; sourceTree = "<group>"; };
 		2018B380259151CC003B5312 /* UserDefaultsOpenCmpStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsOpenCmpStore.swift; sourceTree = "<group>"; };
 		204484AE255D860300786BC0 /* UiView_settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiView_settings.swift; sourceTree = "<group>"; };
-		204865E62566B03700B44D52 /* PermissionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
 		204953BB2577BD0100213911 /* OpenCmpSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCmpSettings.swift; sourceTree = "<group>"; };
 		207C3A9E2576582B00095890 /* cmp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = cmp.html; sourceTree = "<group>"; };
+		208A097A259B2EAE008573A7 /* OpenCmpError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCmpError.swift; sourceTree = "<group>"; };
 		20A2E0CE257529A400B34144 /* OpenCmpConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCmpConfig.swift; sourceTree = "<group>"; };
 		20A2E0FB2575570300B34144 /* OpenCmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCmp.swift; sourceTree = "<group>"; };
 		235A78CFFA6D8B8D86CACD733531CB13 /* UIImage+Compare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Compare.m"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.m"; sourceTree = "<group>"; };
@@ -186,7 +186,6 @@
 				204484A5255D84E500786BC0 /* Extention */,
 				A99F847BADB4361C45075905D9DD03D9 /* WebPrezenterViewController.swift */,
 				20A2E0FA257556C900B34144 /* OpenCmp */,
-				204865E62566B03700B44D52 /* PermissionType.swift */,
 				4B4BBE54859D375D9959D13F3F0ABD6F /* Pod */,
 				925B67589E3B76635F05FAF02F611B32 /* Support Files */,
 			);
@@ -217,6 +216,7 @@
 				204953C12577BD1600213911 /* CMPSettings */,
 				20A2E0CE257529A400B34144 /* OpenCmpConfig.swift */,
 				20A2E0FB2575570300B34144 /* OpenCmp.swift */,
+				208A097A259B2EAE008573A7 /* OpenCmpError.swift */,
 				2018B380259151CC003B5312 /* UserDefaultsOpenCmpStore.swift */,
 			);
 			path = OpenCmp;
@@ -621,12 +621,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				208A097B259B2EAE008573A7 /* OpenCmpError.swift in Sources */,
 				1804E0E29D2D23DD9338E1A418E0F8EC /* CMP-dummy.m in Sources */,
 				204484AF255D860300786BC0 /* UiView_settings.swift in Sources */,
 				20A2E0FC2575570300B34144 /* OpenCmp.swift in Sources */,
 				204953BC2577BD0100213911 /* OpenCmpSettings.swift in Sources */,
 				F4EA907216C8FE0079F3C9936C2516A8 /* WebPrezenterViewController.swift in Sources */,
-				204865E72566B03700B44D52 /* PermissionType.swift in Sources */,
 				20A2E0CF257529A400B34144 /* OpenCmpConfig.swift in Sources */,
 				2018B381259151CC003B5312 /* UserDefaultsOpenCmpStore.swift in Sources */,
 			);

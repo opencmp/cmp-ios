@@ -5,20 +5,24 @@ import UIKit
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-
-    @IBAction func testAction(_ sender: Any) {
         let config = OpenCmpConfig(
             "traffective.com",
             setStorageName: "open_cmp.storage",
             setErrorHandler: { result in
-                print(result)
-            }, setChangesListener: { value in
-                print(value)
+                print("Error", result)
+            }, setChangesListener: { change in
+                print("CMP change", change.value)
             })
-        
         OpenCmp.initialize(self, config)
+        OpenCmp.showUI()
     }
 
+    @IBAction func showPopup(_ sender: Any) {
+        OpenCmp.showUI()
+
+    }
+    @IBAction func cleanData(_ sender: Any) {
+        OpenCmp.cleanUserDefaults()
+    }
     
 }
