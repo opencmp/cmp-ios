@@ -31,7 +31,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="showPopup:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="KPc-b8-91o"/>
+                                    <action selector="showPopup:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="YOI-XN-Upr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSX-Ya-pp8">
@@ -45,8 +45,7 @@
                                     <color key="titleColor" systemColor="systemRedColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="cleanData:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="V6E-ba-Qiw"/>
-                                    <action selector="showPopup:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="LAQ-hl-BQL"/>
+                                    <action selector="cleanData:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="en0-UF-Svj"/>
                                 </connections>
                             </button>
                         </subviews>

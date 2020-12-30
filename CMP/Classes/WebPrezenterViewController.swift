@@ -224,11 +224,9 @@ extension WebPrezenterViewController: WKNavigationDelegate {
 
 @available(iOS 9.0, *)
 extension WebPrezenterViewController {
+    
     func clean() {
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.hideUI()
-            self.userDefaultSettings.clear()
-        }
+        self.userDefaultSettings.clear()
     }
 
     func convertStringToDictionary(text: String) -> [String: Any]? {
