@@ -10,11 +10,10 @@ class ViewController: UIViewController {
             setStorageName: "open_cmp.storage",
             setErrorHandler: { result in
                 print("Error", result)
-            }, setChangesListener: { chamge in
-                print("value", chamge.value)
+            }, setChangesListener: { change in
+                print("CMP change", change.value)
             })
         OpenCmp.initialize(self, config)
-        
     }
 
     @IBAction func showPopup(_ sender: Any) {

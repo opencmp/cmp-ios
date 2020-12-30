@@ -18,7 +18,12 @@ public class UserDefaultsOpenCmpStore: OpenCmpStore {
         userDefaults = userDefaultsType == "" ? UserDefaults.standard : UserDefaults(suiteName: userDefaultsName)!
 
         observer = userDefaults?.observe(\.cmpSettings, options: [.old, .new], changeHandler: { [self] _, change in
-            guard let new = change.newValue else { return }
+            
+            guard let new = change.newValue else {
+                value.removeAll()
+                cmpSettings.consentChangesListener?(self)
+                return
+            }
 
             guard let old = change.oldValue else { return }
 
