@@ -11,12 +11,11 @@ enum CmpError {
 extension CmpError: LocalizedError {
     var errorDescription: String? {
         switch self {
-            case .uiError(let type): return type.localizedDescription
-            case .loadingHtml(let errorDescription): return errorDescription
+        case let .uiError(type): return type.localizedDescription
+        case let .loadingHtml(errorDescription): return errorDescription
         }
     }
 }
-
 
 extension CmpError.Enums {
     enum NetworkError {
@@ -29,28 +28,27 @@ extension CmpError.Enums {
 extension CmpError.Enums.NetworkError: LocalizedError {
     var errorDescription: String? {
         switch self {
-            case .showUiError: return "showUiError"
-            case .hideUiError: return "hideUiError"
-            case .cmpLoadingError(let errorDescription): return errorDescription
+        case .showUiError: return "showUiError"
+        case .hideUiError: return "hideUiError"
+        case let .cmpLoadingError(errorDescription): return errorDescription
         }
     }
 }
 
-
 class CmpErrorReader {
     static let shared = CmpErrorReader()
     private init() {}
-    
-     func handleError(_ err: Error) {
+
+    func handleError(_ err: Error) {
         switch err {
-            case is CmpError:
-                switch err as! CmpError {
-                case .loadingHtml (let type):
-                    print("CMP loadingHtml ERROR, \(type)")
-                case .uiError(let type):
-                    print("uiError, \(type)")
-                }
-            default: print(err)
+        case is CmpError:
+            switch err as! CmpError {
+            case let .loadingHtml(type):
+                print("CMP loadingHtml ERROR, \(type)")
+            case let .uiError(type):
+                print("uiError, \(type)")
+            }
+        default: print(err)
         }
     }
 }

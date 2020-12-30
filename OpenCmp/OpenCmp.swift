@@ -10,7 +10,7 @@ public class OpenCmp {
                 let web = WebPrezenterShared.shared
                 web.cmpSettings = context
                 web.cmpSettings.domen = jsContent.replacingOccurrences(of: CMPStaticList.domain, with: context.domen)
-                web.userDefaultSettings = UserDefaultsOpenCmpStore(userDefaultsType: context.setStorageName ?? "", cmpSettings: context)
+                web.userDefaultSettings = UserDefaultsOpenCmpStore(userDefaultsType: context.storageName ?? "", cmpSettings: context)
                 web.view.backgroundColor = .clear
                 web.modalTransitionStyle = .crossDissolve
                 web.modalPresentationStyle = .fullScreen

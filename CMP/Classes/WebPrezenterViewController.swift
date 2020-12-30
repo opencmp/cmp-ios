@@ -1,7 +1,6 @@
 import UIKit
 import WebKit
 
-
 protocol CMProtocol: class {
     func getConsent(promiseId: String)
     func setConsent(info: [String: Any])
@@ -10,29 +9,29 @@ protocol CMProtocol: class {
 }
 
 @available(iOS 9.0, *)
-class WebPrezenterViewController: UIViewController {
-
-    enum WebViewKeyPath: String {
-      case estimatedProgress
+final class WebPrezenterViewController: UIViewController {
+    private enum WebViewKeyPath: String {
+        case estimatedProgress
     }
-    enum CMProtocolEnum: String {
+
+    private enum CMProtocolEnum: String {
         case getConsent
         case setConsent
         case showUi
         case hideUi
     }
-    
-    private let topMargin:CGFloat = 10.0
-    private var lastLocation:CGPoint = .zero
+
+    private let topMargin: CGFloat = 10.0
+    private var lastLocation: CGPoint = .zero
     private lazy var container = UIView(frame: CGRect.zero)
     private lazy var progressView = UIProgressView(progressViewStyle: .bar)
-    private(set) lazy var webView: WKWebView =  WKWebView(frame: UIScreen.main.bounds, configuration: config)
+    private(set) lazy var webView: WKWebView = WKWebView(frame: UIScreen.main.bounds, configuration: config)
+    
     var cmpSettings: OpenCmpConfig!
     var userDefaultSettings: OpenCmpStore!
-        
 
     private var config: WKWebViewConfiguration {
-        let contentController = WKUserContentController();
+        let contentController = WKUserContentController()
         contentController.add(
             self,
             name: CMProtocolEnum.getConsent.rawValue
@@ -49,7 +48,7 @@ class WebPrezenterViewController: UIViewController {
             self,
             name: CMProtocolEnum.hideUi.rawValue
         )
-        
+
         let config = WKWebViewConfiguration()
         let prefs = WKPreferences()
         prefs.javaScriptEnabled = true
@@ -57,152 +56,144 @@ class WebPrezenterViewController: UIViewController {
         config.userContentController = contentController
         return config
     }
-    
+
     private lazy var toolbar: UIView = {
-      let v = UIView(frame: CGRect.zero)
-      v.isUserInteractionEnabled = true
-      v.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
-        
-      v.translatesAutoresizingMaskIntoConstraints = false
-          
-      let blurEffect = UIBlurEffect(style: .light)
-      let blurEffectView = UIVisualEffectView(effect: blurEffect)
-      v.addSubview(blurEffectView)
-      blurEffectView.bindFrameToSuperviewBounds()
-      return v
-    }()
-    
-    private lazy var urlLabel:UILabel = {
-      let lbl = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 250.0, height: 10.0))
-      lbl.adjustsFontSizeToFitWidth = true
-      lbl.minimumScaleFactor = 0.9
-      lbl.textAlignment = .center
-      lbl.font = UIFont.systemFont(ofSize: 10)
-      return lbl
+        let v = UIView(frame: CGRect.zero)
+        v.isUserInteractionEnabled = true
+        v.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
+
+        v.translatesAutoresizingMaskIntoConstraints = false
+
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        v.addSubview(blurEffectView)
+        blurEffectView.bindFrameToSuperviewBounds()
+        return v
     }()
 
-  
+    private lazy var urlLabel: UILabel = {
+        let lbl = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 250.0, height: 10.0))
+        lbl.adjustsFontSizeToFitWidth = true
+        lbl.minimumScaleFactor = 0.9
+        lbl.textAlignment = .center
+        lbl.font = UIFont.systemFont(ofSize: 10)
+        return lbl
+    }()
+
     override public func loadView() {
-      super.loadView()
-      setupMainLayout()
-      setupToolbar()
+        super.loadView()
+        setupMainLayout()
+        setupToolbar()
     }
-    
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         webView.navigationDelegate = self
         webView.loadHTMLString(cmpSettings.domen, baseURL: nil)
     }
-    
-        
-    public override func viewDidAppear(_ animated: Bool) {
-      super.viewDidAppear(animated)
-      addWebViewObservers()
+
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addWebViewObservers()
     }
-    
-    public override func viewDidDisappear(_ animated: Bool) {
-      super.viewDidDisappear(animated)
-      removeWebViewObservers()
+
+    override public func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeWebViewObservers()
     }
-    
+
     private func setupToolbar() {
+        let titleStackView = UIStackView(arrangedSubviews: [urlLabel])
+        titleStackView.axis = .vertical
 
-      let titleStackView = UIStackView(arrangedSubviews: [ urlLabel])
-      titleStackView.axis = .vertical
+        let toolbarStackView = UIStackView(arrangedSubviews: [titleStackView])
+        toolbarStackView.spacing = 2.0
+        toolbarStackView.axis = .horizontal
+        toolbar.addSubview(toolbarStackView)
 
-      let toolbarStackView = UIStackView(arrangedSubviews: [ titleStackView])
-      toolbarStackView.spacing = 2.0
-      toolbarStackView.axis = .horizontal
-      toolbar.addSubview(toolbarStackView)
-
-      toolbarStackView.translatesAutoresizingMaskIntoConstraints = false
-      toolbarStackView.topAnchor.constraint(equalTo: toolbar.topAnchor, constant: 5).isActive = true
-      toolbarStackView.leadingAnchor.constraint(equalTo: toolbar.leadingAnchor, constant: 5).isActive = true
-      toolbarStackView.bottomAnchor.constraint(equalTo: toolbar.bottomAnchor, constant: -5).isActive = true
-      toolbarStackView.trailingAnchor.constraint(equalTo: toolbar.trailingAnchor, constant:  -49).isActive = true
+        toolbarStackView.translatesAutoresizingMaskIntoConstraints = false
+        toolbarStackView.topAnchor.constraint(equalTo: toolbar.topAnchor, constant: 5).isActive = true
+        toolbarStackView.leadingAnchor.constraint(equalTo: toolbar.leadingAnchor, constant: 5).isActive = true
+        toolbarStackView.bottomAnchor.constraint(equalTo: toolbar.bottomAnchor, constant: -5).isActive = true
+        toolbarStackView.trailingAnchor.constraint(equalTo: toolbar.trailingAnchor, constant: -49).isActive = true
     }
-      
-    
+
     private func setupMainLayout() {
-      view = UIView()
-      view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-      view.backgroundColor = .clear
-      view.addSubview(container)
-      container.translatesAutoresizingMaskIntoConstraints = false
-      container.topAnchor.constraint(
-        equalTo: view.safeTopAnchor, constant: topMargin).isActive = true
-      container.bottomAnchor.constraint(
-        equalTo: view.bottomAnchor).isActive = true
-      container.leadingAnchor.constraint(
-        equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
-      container.trailingAnchor.constraint(
-        equalTo: view.safeTrailingtAnchor, constant: 0).isActive = true
-      container.layer.cornerRadius = 16.0
-      container.clipsToBounds = true
-      
-      let progressViewContainer = UIView()
-      progressViewContainer.addSubview(progressView)
-      progressView.bindFrameToSuperviewBounds()
-      progressViewContainer.heightAnchor.constraint(equalToConstant: 1)
-          .isActive = true
-      
-      let mainStackView = UIStackView(arrangedSubviews: [
-          toolbar,
-          progressViewContainer,
-          webView])
-      
-      mainStackView.axis = .vertical
-      container.addSubview(mainStackView)
-      mainStackView.bindFrameToSuperviewBounds()
+        view = UIView()
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        view.backgroundColor = .clear
+        view.addSubview(container)
+        container.translatesAutoresizingMaskIntoConstraints = false
+        container.topAnchor.constraint(
+            equalTo: view.safeTopAnchor, constant: topMargin).isActive = true
+        container.bottomAnchor.constraint(
+            equalTo: view.bottomAnchor).isActive = true
+        container.leadingAnchor.constraint(
+            equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
+        container.trailingAnchor.constraint(
+            equalTo: view.safeTrailingtAnchor, constant: 0).isActive = true
+        container.layer.cornerRadius = 16.0
+        container.clipsToBounds = true
 
+        let progressViewContainer = UIView()
+        progressViewContainer.addSubview(progressView)
+        progressView.bindFrameToSuperviewBounds()
+        progressViewContainer.heightAnchor.constraint(equalToConstant: 1)
+            .isActive = true
+
+        let mainStackView = UIStackView(arrangedSubviews: [
+            toolbar,
+            progressViewContainer,
+            webView])
+
+        mainStackView.axis = .vertical
+        container.addSubview(mainStackView)
+        mainStackView.bindFrameToSuperviewBounds()
     }
-    
+
     private func addWebViewObservers() {
-      webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
-      webView.addObserver(self, forKeyPath: #keyPath(WKWebView.title), options: .new, context: nil)
-      webView.addObserver(self, forKeyPath: #keyPath(WKWebView.canGoBack), options: .new, context: nil)
-      webView.addObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward), options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.title), options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.canGoBack), options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward), options: .new, context: nil)
     }
-    
-    private func removeWebViewObservers() {
-      webView.removeObserver(self, forKeyPath:  #keyPath(WKWebView.estimatedProgress))
-      webView.removeObserver(self, forKeyPath:  #keyPath(WKWebView.title))
-      webView.removeObserver(self, forKeyPath:  #keyPath(WKWebView.canGoBack))
-      webView.removeObserver(self, forKeyPath:  #keyPath(WKWebView.canGoForward))
-    }
-    
-        
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?,
-      change: [NSKeyValueChangeKey : Any]?,
-      context: UnsafeMutableRawPointer?) {
-      
-      switch keyPath {
-      case WebViewKeyPath.estimatedProgress.rawValue:
-        progressView.progress = Float(webView.estimatedProgress)
-        if progressView.progress == 1.0 {
-          progressView.alpha = 0.0
-        } else if progressView.alpha != 1.0 {
-          progressView.alpha = 1.0
-        }
 
-      default:
-        break
-      }
+    private func removeWebViewObservers() {
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.title))
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoBack))
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward))
     }
-  }
+
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?,
+                                      change: [NSKeyValueChangeKey: Any]?,
+                                      context: UnsafeMutableRawPointer?) {
+        switch keyPath {
+        case WebViewKeyPath.estimatedProgress.rawValue:
+            progressView.progress = Float(webView.estimatedProgress)
+            if progressView.progress == 1.0 {
+                progressView.alpha = 0.0
+            } else if progressView.alpha != 1.0 {
+                progressView.alpha = 1.0
+            }
+
+        default:
+            break
+        }
+    }
+}
 
 @available(iOS 9.0, *)
 extension WebPrezenterViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        if let cmpEnum = CMProtocolEnum(rawValue: message.name ) {
+        if let cmpEnum = CMProtocolEnum(rawValue: message.name) {
             switch cmpEnum {
             case .getConsent:
                 let promiseId = message.body as? String ?? ""
                 getConsent(promiseId: promiseId)
             case .setConsent:
-                if let result = convertStringToDictionary(text: message.body as? String ?? "")  {
-                setConsent(info: result)
+                if let result = convertStringToDictionary(text: message.body as? String ?? "") {
+                    setConsent(info: result)
                 }
             case .showUi:
                 showUI()
@@ -213,37 +204,33 @@ extension WebPrezenterViewController: WKScriptMessageHandler {
             print("There isn't a CMP procol")
         }
     }
-    
 }
 
 @available(iOS 9.0, *)
 extension WebPrezenterViewController: WKNavigationDelegate {
-    
     public func webView(
-      _ webView: WKWebView,
-      decidePolicyFor navigationAction: WKNavigationAction,
-      decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-      
-      switch navigationAction.navigationType {
-      case .linkActivated:
-        webView.load(navigationAction.request)
-      default:
-        break
-      }
-      decisionHandler(.allow)
+        _ webView: WKWebView,
+        decidePolicyFor navigationAction: WKNavigationAction,
+        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        switch navigationAction.navigationType {
+        case .linkActivated:
+            webView.load(navigationAction.request)
+        default:
+            break
+        }
+        decisionHandler(.allow)
     }
 }
 
 @available(iOS 9.0, *)
 extension WebPrezenterViewController {
-    
     func clean() {
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             self.hideUI()
             self.userDefaultSettings.clear()
         }
     }
-    
+
     func convertStringToDictionary(text: String) -> [String: Any]? {
         if let data = text.data(using: .utf8) {
             do {
@@ -259,28 +246,27 @@ extension WebPrezenterViewController {
 
 @available(iOS 9.0, *)
 extension WebPrezenterViewController: CMProtocol {
-    
     func getConsent(promiseId: String) {
         var consent = userDefaultSettings.getConsentString()
         if consent == "" {
             consent = "{}"
         }
         // Send update to the page
-        self.webView.evaluateJavaScript("trfCmpResolvePromise('\(promiseId)', '\(consent)')") { result, error in
-            if let jsError =  error  {
+        webView.evaluateJavaScript("trfCmpResolvePromise('\(promiseId)', '\(consent)')") { _, error in
+            if let jsError = error {
                 print(jsError)
                 return
             }
         }
     }
-   
+
     func setConsent(info: [String: Any]) {
         userDefaultSettings.update(values: info)
     }
-    
+
     func showUI() {
         DispatchQueue.main.async { [weak self] in
-            if let strongSelf = self, ((UIApplication.topViewController() as? WebPrezenterViewController) == nil) {
+            if let strongSelf = self, (UIApplication.topViewController() as? WebPrezenterViewController) == nil {
                 UIApplication.topViewController()?.present(strongSelf, animated: true, completion: nil)
             } else {
                 let err: Error = CmpError.uiError(type: .showUiError)
@@ -288,7 +274,7 @@ extension WebPrezenterViewController: CMProtocol {
             }
         }
     }
-    
+
     func hideUI() {
         DispatchQueue.main.async { [weak self] in
             if let strongSelf = self {
@@ -299,8 +285,4 @@ extension WebPrezenterViewController: CMProtocol {
             }
         }
     }
-    
 }
-
-
-
