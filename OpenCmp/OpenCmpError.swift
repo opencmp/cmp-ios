@@ -39,16 +39,16 @@ class CmpErrorReader {
     static let shared = CmpErrorReader()
     private init() {}
 
-    func handleError(_ err: Error) {
+    func handleError(_ err: Error) -> String {
         switch err {
         case is CmpError:
             switch err as! CmpError {
             case let .loadingHtml(type):
-                print("CMP loadingHtml ERROR, \(type)")
+               return  "CMP loadingHtml ERROR, \(type)"
             case let .uiError(type):
-                print("uiError, \(type)")
+                return "uiError, \(type)"
             }
-        default: print(err)
+        default: return "CMP error"
         }
     }
 }

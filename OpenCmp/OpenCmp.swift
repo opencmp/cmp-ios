@@ -16,7 +16,7 @@ public class OpenCmp {
                 web.modalPresentationStyle = .fullScreen
             }  catch let error as NSError{
                 let err: Error = CmpError.loadingHtml(errorDescription: error.debugDescription)
-                CmpErrorReader.shared.handleError(err)
+                context.errorHandler?(CmpErrorReader.shared.handleError(err))
             }
         }
     }

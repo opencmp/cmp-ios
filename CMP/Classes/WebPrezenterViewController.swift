@@ -268,7 +268,8 @@ extension WebPrezenterViewController: CMProtocol {
                 UIApplication.topViewController()?.present(strongSelf, animated: true, completion: nil)
             } else {
                 let err: Error = CmpError.uiError(type: .showUiError)
-                CmpErrorReader.shared.handleError(err)
+                self?.cmpSettings.errorHandler?(CmpErrorReader.shared.handleError(err))
+                
             }
         }
     }
@@ -279,7 +280,7 @@ extension WebPrezenterViewController: CMProtocol {
                 strongSelf.dismiss(animated: true, completion: nil)
             } else {
                 let err: Error = CmpError.uiError(type: .hideUiError)
-                CmpErrorReader.shared.handleError(err)
+                self?.cmpSettings.errorHandler?(CmpErrorReader.shared.handleError(err))
             }
         }
     }

@@ -9,7 +9,7 @@ class ViewController: UIViewController {
             "traffective.com",
             setStorageName: "open_cmp.storage",
             setErrorHandler: { result in
-                print(result)
+                print("Error", result)
             }, setChangesListener: { chamge in
                 print("value", chamge.value)
             })
