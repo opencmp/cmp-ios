@@ -4,7 +4,7 @@ import UIKit
 protocol OpenCmpStore {
     func clear()
     func update(values: [String: Any]?)
-    func getConsentString() -> String
+    func getConsentString() throws -> String
 }
 
 public class UserDefaultsOpenCmpStore: OpenCmpStore {
@@ -77,13 +77,24 @@ public class UserDefaultsOpenCmpStore: OpenCmpStore {
         userDefaults?.set(convertData, forKey: CMPStaticList.cmpSettings)
     }
 
-    func getConsentString() -> String {
+    func getConsentString() throws -> String {
         let data = userDefaults?.object(forKey: CMPStaticList.cmpSettings)
-        guard let convert = data as? Data else { return "" }
+        
+        let emptyDict: [String : Any?] = ["meta" : [:]]
+        let jsonEmptyData = try JSONSerialization.data(withJSONObject: emptyDict, options: [])
+        let jsonEmptyString = String(data: jsonEmptyData, encoding: String.Encoding.utf8) ?? ""
+        
+        guard let convert = data as? Data else { return jsonEmptyString }//"{\"meta\":{}}" }
+        
         let dict = NSKeyedUnarchiver.unarchiveObject(with: convert)
-        let jsonData = try! JSONSerialization.data(withJSONObject: dict ?? [], options: [])
-        let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)!
-        return jsonString
+        let jsonData = try JSONSerialization.data(withJSONObject: dict ?? [], options: [])
+        let jsonString = String(data: jsonData, encoding: String.Encoding.utf8) ?? ""
+        if !jsonString.isEmpty {
+            return jsonString
+        } else {
+            
+            return jsonEmptyString
+        }
     }
 }
 

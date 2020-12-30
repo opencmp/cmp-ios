@@ -14,6 +14,7 @@ class ViewController: UIViewController {
                 print("CMP change", change.value)
             })
         OpenCmp.initialize(self, config)
+        OpenCmp.showUI()
     }
 
     @IBAction func showPopup(_ sender: Any) {

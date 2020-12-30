@@ -21,12 +21,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtA-Nt-NnP">
-                                <rect key="frame" x="31" y="318.5" width="99" height="30"/>
+                                <rect key="frame" x="31" y="602" width="99" height="30"/>
                                 <color key="backgroundColor" red="0.96033936740000003" green="0.61077851059999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="7iC-Ma-TrR"/>
                                     <constraint firstAttribute="width" constant="99" id="fW8-ed-cMr"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Show popup">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -35,14 +36,15 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSX-Ya-pp8">
-                                <rect key="frame" x="269" y="318.5" width="75" height="30"/>
+                                <rect key="frame" x="244" y="602" width="100" height="30"/>
                                 <color key="backgroundColor" red="0.96033936740000003" green="0.61077851059999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="9Dz-lT-7y8"/>
-                                    <constraint firstAttribute="width" constant="75" id="EfG-l4-yVU"/>
+                                    <constraint firstAttribute="width" constant="100" id="EfG-l4-yVU"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Clean Data">
-                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                    <color key="titleColor" systemColor="systemPinkColor"/>
                                 </state>
                                 <connections>
                                     <action selector="cleanData:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="en0-UF-Svj"/>
@@ -51,10 +53,10 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="jtA-Nt-NnP" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="74k-8r-GKb"/>
+                            <constraint firstItem="jtA-Nt-NnP" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="bottom" constant="-50" id="74k-8r-GKb"/>
                             <constraint firstItem="jtA-Nt-NnP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="15" id="eaK-Of-jO0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iSX-Ya-pp8" secondAttribute="trailing" constant="15" id="loJ-Hi-u4q"/>
-                            <constraint firstItem="iSX-Ya-pp8" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="qFy-m1-266"/>
+                            <constraint firstItem="iSX-Ya-pp8" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="bottom" constant="-50" id="qFy-m1-266"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -64,8 +66,8 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

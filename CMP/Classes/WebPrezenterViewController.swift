@@ -25,7 +25,7 @@ final class WebPrezenterViewController: UIViewController {
     private var lastLocation: CGPoint = .zero
     private lazy var container = UIView(frame: CGRect.zero)
     private lazy var progressView = UIProgressView(progressViewStyle: .bar)
-    private(set) lazy var webView: WKWebView = WKWebView(frame: UIScreen.main.bounds, configuration: config)
+    private(set) var webView: WKWebView!// = WKWebView(frame: UIScreen.main.bounds, configuration: config)
     
     var cmpSettings: OpenCmpConfig!
     var userDefaultSettings: OpenCmpStore!
@@ -82,24 +82,30 @@ final class WebPrezenterViewController: UIViewController {
 
     override public func loadView() {
         super.loadView()
+        
+        webView = WKWebView(frame: UIScreen.main.bounds, configuration: config)
+        
         setupMainLayout()
         setupToolbar()
     }
 
-    override public func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if webView == nil {
+            webView = WKWebView(frame: UIScreen.main.bounds, configuration: config)
+        }
+        
         webView.navigationDelegate = self
         webView.loadHTMLString(cmpSettings.domen, baseURL: nil)
-    }
-
-    override public func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        
         addWebViewObservers()
     }
 
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         removeWebViewObservers()
+        webView = nil
     }
 
     private func setupToolbar() {
@@ -245,16 +251,19 @@ extension WebPrezenterViewController {
 @available(iOS 9.0, *)
 extension WebPrezenterViewController: CMProtocol {
     func getConsent(promiseId: String) {
-        var consent = userDefaultSettings.getConsentString()
-        if consent == "" {
-            consent = "{}"
-        }
-        // Send update to the page
-        webView.evaluateJavaScript("trfCmpResolvePromise('\(promiseId)', '\(consent)')") { _, error in
-            if let jsError = error {
-                print(jsError)
-                return
+        do {
+            let consent = try userDefaultSettings.getConsentString()
+            // Send update to the page
+            webView.evaluateJavaScript("trfCmpResolvePromise('\(promiseId)', \(consent))") { _, error in
+                if let jsError = error {
+                    print(jsError)
+                    return
+                }
             }
+        } catch (let error) {
+            let err: Error = CmpError.uiError(type: .cmpLoadingError(errorDescription: error.localizedDescription))
+            self.cmpSettings.errorHandler?(CmpErrorReader.shared.handleError(err))
+            
         }
     }
 
@@ -264,13 +273,14 @@ extension WebPrezenterViewController: CMProtocol {
 
     func showUI() {
         DispatchQueue.main.async { [weak self] in
-            if let strongSelf = self, (UIApplication.topViewController() as? WebPrezenterViewController) == nil {
+            if let strongSelf = self, !(UIApplication.topViewController() is WebPrezenterViewController) {
                 UIApplication.topViewController()?.present(strongSelf, animated: true, completion: nil)
-            } else {
-                let err: Error = CmpError.uiError(type: .showUiError)
-                self?.cmpSettings.errorHandler?(CmpErrorReader.shared.handleError(err))
-                
             }
+//            else {
+//                let err: Error = CmpError.uiError(type: .showUiError)
+//                self?.cmpSettings.errorHandler?(CmpErrorReader.shared.handleError(err))
+//
+//            }
         }
     }
 
