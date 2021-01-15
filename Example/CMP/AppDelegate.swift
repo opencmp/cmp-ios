@@ -16,11 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         //creating config with domain, storageName, errorHandler and data changeListener
         let config = OpenCmpConfig(
             "traffective.com",
-            setStorageName: "open_cmp.storage",
+            storageName: "open_cmp.storage",
             setErrorHandler: { result in
                 print("Error", result)
             }, setChangesListener: { change in
@@ -28,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         //initialize framework
         OpenCmp.initialize(config)
+        
         return true
     }
 

@@ -9,12 +9,12 @@ public class OpenCmp {
                 let jsContent = try String.init(contentsOfFile: filePath, encoding: String.Encoding.utf8)
                 let web = WebPrezenterShared.shared
                 web.cmpSettings = context
-                web.cmpSettings.domen = jsContent.replacingOccurrences(of: CMPStaticList.domain, with: context.domen)
+                web.cmpSettings.domain = jsContent.replacingOccurrences(of: CMPStaticList.domain, with: context.domain)
                 web.userDefaultSettings = UserDefaultsOpenCmpStore(userDefaultsType: context.storageName ?? "", cmpSettings: context)
                 web.view.backgroundColor = .clear
                 web.modalTransitionStyle = .crossDissolve
                 web.modalPresentationStyle = .fullScreen
-                web.webView.loadHTMLString(web.cmpSettings.domen, baseURL: nil)
+                web.webView.loadHTMLString(web.cmpSettings.domain, baseURL: nil)
                 
             }  catch let error as NSError{
                 let err: Error = CmpError.loadingHtml(errorDescription: error.debugDescription)

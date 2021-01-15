@@ -3,20 +3,26 @@ import Foundation
 
 public struct OpenCmpConfig {
     
-    var domen: String
+    var domain: String
     let storageName: String?
-    let errorHandler: ((String) -> (Void))?
-    let consentChangesListener: ((UserDefaultsOpenCmpStore) -> (Void))?
+    var errorHandler: ((String) -> (Void))? = nil
+    var consentChangesListener: ((UserDefaultsOpenCmpStore) -> (Void))? = nil
     
-    public init(_ domen: String, setStorageName: String? = nil, setErrorHandler: @escaping (String)->(Void), setChangesListener: @escaping(UserDefaultsOpenCmpStore)->(Void) ) {
+    public init(_ domain: String, storageName: String? = nil, setErrorHandler: ((String)->(Void))? = nil, setChangesListener: ((UserDefaultsOpenCmpStore)->(Void))? = nil) {
         
-        self.domen = domen
-        self.storageName = setStorageName
-        self.errorHandler =  { result in
-            setErrorHandler(result)
+        self.domain = domain
+        self.storageName = storageName
+        
+        if setErrorHandler != nil {
+            self.errorHandler =  { result in
+                setErrorHandler?(result)
+            }
         }
-        self.consentChangesListener = { result in
-            setChangesListener(result)
+        
+        if setChangesListener != nil {
+            self.consentChangesListener = { result in
+                setChangesListener?(result)
+            }
         }
     }
     
