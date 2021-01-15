@@ -17,6 +17,9 @@ class ViewController: UIViewController {
             })
         //initialize framework
         OpenCmp.initialize(self, config)
+        
+        //show UI
+//        OpenCmp.showUI()
     }
 
     @IBAction func showPopup(_ sender: Any) {

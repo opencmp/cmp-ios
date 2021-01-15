@@ -4,12 +4,17 @@ import WebKit
 protocol CMProtocol: class {
     func getConsent(promiseId: String)
     func setConsent(info: [String: Any])
-    func showUI()
-    func hideUI()
+    func triggerShowUi()
+    func hideUi()
 }
+
+//MARK: - main class
 
 @available(iOS 9.0, *)
 final class WebPrezenterViewController: UIViewController {
+    
+    //MARK: properties
+    
     private enum WebViewKeyPath: String {
         case estimatedProgress
     }
@@ -25,7 +30,7 @@ final class WebPrezenterViewController: UIViewController {
     private var lastLocation: CGPoint = .zero
     private lazy var container = UIView(frame: CGRect.zero)
     private lazy var progressView = UIProgressView(progressViewStyle: .bar)
-    private(set) var webView: WKWebView!// = WKWebView(frame: UIScreen.main.bounds, configuration: config)
+    private(set) var webView: WKWebView!
     
     var cmpSettings: OpenCmpConfig!
     var userDefaultSettings: OpenCmpStore!
@@ -79,6 +84,8 @@ final class WebPrezenterViewController: UIViewController {
         lbl.font = UIFont.systemFont(ofSize: 10)
         return lbl
     }()
+    
+    //MARK: functions
 
     override public func loadView() {
         super.loadView()
@@ -87,89 +94,24 @@ final class WebPrezenterViewController: UIViewController {
         
         setupMainLayout()
         setupToolbar()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if webView == nil {
-            webView = WKWebView(frame: UIScreen.main.bounds, configuration: config)
-        }
-        
         webView.navigationDelegate = self
-        webView.loadHTMLString(cmpSettings.domen, baseURL: nil)
         
         addWebViewObservers()
+        
     }
 
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         removeWebViewObservers()
-        webView = nil
     }
 
-    private func setupToolbar() {
-        let titleStackView = UIStackView(arrangedSubviews: [urlLabel])
-        titleStackView.axis = .vertical
-
-        let toolbarStackView = UIStackView(arrangedSubviews: [titleStackView])
-        toolbarStackView.spacing = 2.0
-        toolbarStackView.axis = .horizontal
-        toolbar.addSubview(toolbarStackView)
-
-        toolbarStackView.translatesAutoresizingMaskIntoConstraints = false
-        toolbarStackView.topAnchor.constraint(equalTo: toolbar.topAnchor, constant: 5).isActive = true
-        toolbarStackView.leadingAnchor.constraint(equalTo: toolbar.leadingAnchor, constant: 5).isActive = true
-        toolbarStackView.bottomAnchor.constraint(equalTo: toolbar.bottomAnchor, constant: -5).isActive = true
-        toolbarStackView.trailingAnchor.constraint(equalTo: toolbar.trailingAnchor, constant: -49).isActive = true
-    }
-
-    private func setupMainLayout() {
-        view = UIView()
-        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        view.backgroundColor = .clear
-        view.addSubview(container)
-        container.translatesAutoresizingMaskIntoConstraints = false
-        container.topAnchor.constraint(
-            equalTo: view.safeTopAnchor, constant: topMargin).isActive = true
-        container.bottomAnchor.constraint(
-            equalTo: view.bottomAnchor).isActive = true
-        container.leadingAnchor.constraint(
-            equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
-        container.trailingAnchor.constraint(
-            equalTo: view.safeTrailingtAnchor, constant: 0).isActive = true
-        container.layer.cornerRadius = 16.0
-        container.clipsToBounds = true
-
-        let progressViewContainer = UIView()
-        progressViewContainer.addSubview(progressView)
-        progressView.bindFrameToSuperviewBounds()
-        progressViewContainer.heightAnchor.constraint(equalToConstant: 1)
-            .isActive = true
-
-        let mainStackView = UIStackView(arrangedSubviews: [
-            toolbar,
-            progressViewContainer,
-            webView])
-
-        mainStackView.axis = .vertical
-        container.addSubview(mainStackView)
-        mainStackView.bindFrameToSuperviewBounds()
-    }
-
-    private func addWebViewObservers() {
-        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
-        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.title), options: .new, context: nil)
-        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.canGoBack), options: .new, context: nil)
-        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward), options: .new, context: nil)
-    }
-
-    private func removeWebViewObservers() {
-        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
-        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.title))
-        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoBack))
-        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward))
-    }
+    
 
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?,
                                       change: [NSKeyValueChangeKey: Any]?,
@@ -189,6 +131,84 @@ final class WebPrezenterViewController: UIViewController {
     }
 }
 
+//MARK: - private section
+
+@available(iOS 9.0, *)
+private extension WebPrezenterViewController {
+    func setupToolbar() {
+        let titleStackView = UIStackView(arrangedSubviews: [urlLabel])
+        titleStackView.axis = .vertical
+        
+        let toolbarStackView = UIStackView(arrangedSubviews: [titleStackView])
+        toolbarStackView.spacing = 2.0
+        toolbarStackView.axis = .horizontal
+        toolbar.addSubview(toolbarStackView)
+        
+        toolbarStackView.translatesAutoresizingMaskIntoConstraints = false
+        toolbarStackView.topAnchor.constraint(equalTo: toolbar.topAnchor, constant: 5).isActive = true
+        toolbarStackView.leadingAnchor.constraint(equalTo: toolbar.leadingAnchor, constant: 5).isActive = true
+        toolbarStackView.bottomAnchor.constraint(equalTo: toolbar.bottomAnchor, constant: -5).isActive = true
+        toolbarStackView.trailingAnchor.constraint(equalTo: toolbar.trailingAnchor, constant: -49).isActive = true
+    }
+    
+    func setupMainLayout() {
+        view = UIView()
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        view.backgroundColor = .clear
+        view.addSubview(container)
+        container.translatesAutoresizingMaskIntoConstraints = false
+        container.topAnchor.constraint(
+            equalTo: view.safeTopAnchor, constant: topMargin).isActive = true
+        container.bottomAnchor.constraint(
+            equalTo: view.bottomAnchor).isActive = true
+        container.leadingAnchor.constraint(
+            equalTo: view.safeLeadingAnchor, constant: 0).isActive = true
+        container.trailingAnchor.constraint(
+            equalTo: view.safeTrailingtAnchor, constant: 0).isActive = true
+        container.layer.cornerRadius = 16.0
+        container.clipsToBounds = true
+        
+        let progressViewContainer = UIView()
+        progressViewContainer.addSubview(progressView)
+        progressView.bindFrameToSuperviewBounds()
+        progressViewContainer.heightAnchor.constraint(equalToConstant: 1)
+            .isActive = true
+        
+        let mainStackView = UIStackView(arrangedSubviews: [
+                                            toolbar,
+                                            progressViewContainer,
+                                            webView])
+        
+        mainStackView.axis = .vertical
+        container.addSubview(mainStackView)
+        mainStackView.bindFrameToSuperviewBounds()
+    }
+    
+    func addWebViewObservers() {
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.title), options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.canGoBack), options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward), options: .new, context: nil)
+    }
+    
+    func removeWebViewObservers() {
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.title))
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoBack))
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward))
+    }
+    
+    func showUi() {
+        DispatchQueue.main.async { [weak self] in
+            if let strongSelf = self, !(UIApplication.topViewController() is WebPrezenterViewController) {
+                UIApplication.topViewController()?.present(strongSelf, animated: true, completion: nil)
+            }
+        }
+    }
+}
+
+//MARK: - WKScriptMessageHandler
+
 @available(iOS 9.0, *)
 extension WebPrezenterViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
@@ -202,15 +222,17 @@ extension WebPrezenterViewController: WKScriptMessageHandler {
                     setConsent(info: result)
                 }
             case .showUi:
-                showUI()
+                showUi()
             case .hideUi:
-                hideUI()
+                hideUi()
             }
         } else {
             print("There isn't a CMP procol")
         }
     }
 }
+
+//MARK: - WKNavigationDelegate
 
 @available(iOS 9.0, *)
 extension WebPrezenterViewController: WKNavigationDelegate {
@@ -228,11 +250,14 @@ extension WebPrezenterViewController: WKNavigationDelegate {
     }
 }
 
+//MARK: - public section
+
 @available(iOS 9.0, *)
 extension WebPrezenterViewController {
     
     func clean() {
         self.userDefaultSettings.clear()
+        WKWebView.clean()
     }
 
     func convertStringToDictionary(text: String) -> [String: Any]? {
@@ -247,6 +272,8 @@ extension WebPrezenterViewController {
         return nil
     }
 }
+
+//MARK: - CMProtocol
 
 @available(iOS 9.0, *)
 extension WebPrezenterViewController: CMProtocol {
@@ -271,20 +298,16 @@ extension WebPrezenterViewController: CMProtocol {
         userDefaultSettings.update(values: info)
     }
 
-    func showUI() {
-        DispatchQueue.main.async { [weak self] in
-            if let strongSelf = self, !(UIApplication.topViewController() is WebPrezenterViewController) {
-                UIApplication.topViewController()?.present(strongSelf, animated: true, completion: nil)
+    func triggerShowUi() {
+        webView.evaluateJavaScript("__tcfapi(\"showUi\", 2, function(){})") { _, error in
+            if let jsError = error {
+                print(jsError)
+                return
             }
-//            else {
-//                let err: Error = CmpError.uiError(type: .showUiError)
-//                self?.cmpSettings.errorHandler?(CmpErrorReader.shared.handleError(err))
-//
-//            }
         }
     }
 
-    func hideUI() {
+    func hideUi() {
         DispatchQueue.main.async { [weak self] in
             if let strongSelf = self {
                 strongSelf.dismiss(animated: true, completion: nil)

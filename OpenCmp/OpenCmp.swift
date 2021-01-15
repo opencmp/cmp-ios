@@ -14,6 +14,8 @@ public class OpenCmp {
                 web.view.backgroundColor = .clear
                 web.modalTransitionStyle = .crossDissolve
                 web.modalPresentationStyle = .fullScreen
+//                web.webView.navigationDelegate = self
+                web.webView.loadHTMLString(web.cmpSettings.domen, baseURL: nil)
             }  catch let error as NSError{
                 let err: Error = CmpError.loadingHtml(errorDescription: error.debugDescription)
                 context.errorHandler?(CmpErrorReader.shared.handleError(err))
@@ -22,7 +24,7 @@ public class OpenCmp {
     }
     
     public static func showUI() {
-        WebPrezenterShared.shared.showUI()
+        WebPrezenterShared.shared.triggerShowUi()
     }
     
     public static func cleanUserDefaults() {
