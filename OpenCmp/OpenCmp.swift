@@ -28,7 +28,7 @@ public class OpenCmp {
         WebPrezenterShared.shared.triggerShowUi()
     }
     
-    public static func cleanUserDefaults() {
+    public static func clearData() {
         WebPrezenterShared.shared.clean()
     }
 }

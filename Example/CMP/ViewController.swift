@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     @IBAction func cleanData(_ sender: Any) {
         //clear saved data
-        OpenCmp.cleanUserDefaults()
+        OpenCmp.clearData()
     }
     
 }
