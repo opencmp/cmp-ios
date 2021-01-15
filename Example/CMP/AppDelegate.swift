@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CMP
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        //creating config with domain, storageName, errorHandler and data changeListener
+        let config = OpenCmpConfig(
+            "traffective.com",
+            setStorageName: "open_cmp.storage",
+            setErrorHandler: { result in
+                print("Error", result)
+            }, setChangesListener: { change in
+                print("CMP change", change.value)
+            })
+        //initialize framework
+        OpenCmp.initialize(config)
         return true
     }
 
