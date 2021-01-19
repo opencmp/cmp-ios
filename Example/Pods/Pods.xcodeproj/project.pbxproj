@@ -21,6 +21,7 @@
 		20A2E0CF257529A400B34144 /* OpenCmpConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A2E0CE257529A400B34144 /* OpenCmpConfig.swift */; };
 		20A2E0FC2575570300B34144 /* OpenCmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A2E0FB2575570300B34144 /* OpenCmp.swift */; };
 		2DCFF0CE0BD295F1D46D3247F36B192C /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 235A78CFFA6D8B8D86CACD733531CB13 /* UIImage+Compare.m */; };
+		3EABF0C525B1A774006EFEEF /* WKWebView+clean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABF0C425B1A774006EFEEF /* WKWebView+clean.swift */; };
 		40039E0AF0D764360B1D4FC4F7950D2E /* UIApplication+StrictKeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 99A67367E018411D614EC8536A8A1C5B /* UIApplication+StrictKeyWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		4724BB71CBA4CB835F29BD2D1526BE72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD4ED544B638D07C7D755AF1C27116A /* Foundation.framework */; };
 		556B937459A842F597831010455DD311 /* Pods-CMP_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2352DC317C159DFA8B8228D0D3E986 /* Pods-CMP_Tests-dummy.m */; };
@@ -92,6 +93,7 @@
 		3522D0B0B1B01E9E7F877BF9049BDA33 /* Pods-CMP_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CMP_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		3881BC61BC3808A3C3E246E0694810B5 /* Pods_CMP_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CMP_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3FC6D9FA3A4093452A399FE812C739 /* CMP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CMP.debug.xcconfig; sourceTree = "<group>"; };
+		3EABF0C425B1A774006EFEEF /* WKWebView+clean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+clean.swift"; sourceTree = "<group>"; };
 		3EB397BC8B0E14460959D12686DFC06E /* Pods-CMP_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CMP_Example.release.xcconfig"; sourceTree = "<group>"; };
 		3F0D66CF296ABBC57EC4D0452397E235 /* SwiftSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = FBSnapshotTestCase/SwiftSupport.swift; sourceTree = "<group>"; };
 		40294663CC3D54D3ED7369314B48DFD6 /* Pods-CMP_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CMP_Tests-frameworks.sh"; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				204484AE255D860300786BC0 /* UiView_settings.swift */,
+				3EABF0C425B1A774006EFEEF /* WKWebView+clean.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				204953BC2577BD0100213911 /* OpenCmpSettings.swift in Sources */,
 				F4EA907216C8FE0079F3C9936C2516A8 /* WebPrezenterViewController.swift in Sources */,
 				20A2E0CF257529A400B34144 /* OpenCmpConfig.swift in Sources */,
+				3EABF0C525B1A774006EFEEF /* WKWebView+clean.swift in Sources */,
 				2018B381259151CC003B5312 /* UserDefaultsOpenCmpStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
