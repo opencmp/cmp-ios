@@ -14,14 +14,15 @@
 		14C511527597E5846AB2627F791C7D8E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 716A9972B9D9103B54DB950893FAF104 /* QuartzCore.framework */; };
 		1804E0E29D2D23DD9338E1A418E0F8EC /* CMP-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4759202DC8B003C7509B6E3188CFAE89 /* CMP-dummy.m */; };
 		2018B381259151CC003B5312 /* UserDefaultsOpenCmpStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2018B380259151CC003B5312 /* UserDefaultsOpenCmpStore.swift */; };
-		204484AF255D860300786BC0 /* UiView_settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204484AE255D860300786BC0 /* UiView_settings.swift */; };
 		204953BC2577BD0100213911 /* OpenCmpSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204953BB2577BD0100213911 /* OpenCmpSettings.swift */; };
 		207C3ABA2576723F00095890 /* cmp.html in Resources */ = {isa = PBXBuildFile; fileRef = 207C3A9E2576582B00095890 /* cmp.html */; };
 		208A097B259B2EAE008573A7 /* OpenCmpError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208A097A259B2EAE008573A7 /* OpenCmpError.swift */; };
 		20A2E0CF257529A400B34144 /* OpenCmpConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A2E0CE257529A400B34144 /* OpenCmpConfig.swift */; };
 		20A2E0FC2575570300B34144 /* OpenCmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A2E0FB2575570300B34144 /* OpenCmp.swift */; };
 		2DCFF0CE0BD295F1D46D3247F36B192C /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 235A78CFFA6D8B8D86CACD733531CB13 /* UIImage+Compare.m */; };
-		3EABF0C525B1A774006EFEEF /* WKWebView+clean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABF0C425B1A774006EFEEF /* WKWebView+clean.swift */; };
+		3E40B0AA25B6EA84001EDEA6 /* UiView_settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E40B0A725B6EA84001EDEA6 /* UiView_settings.swift */; };
+		3E40B0AB25B6EA84001EDEA6 /* WKWebView+clean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E40B0A825B6EA84001EDEA6 /* WKWebView+clean.swift */; };
+		3E40B0AC25B6EA84001EDEA6 /* WebPrezenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E40B0A925B6EA84001EDEA6 /* WebPrezenterViewController.swift */; };
 		40039E0AF0D764360B1D4FC4F7950D2E /* UIApplication+StrictKeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 99A67367E018411D614EC8536A8A1C5B /* UIApplication+StrictKeyWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		4724BB71CBA4CB835F29BD2D1526BE72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD4ED544B638D07C7D755AF1C27116A /* Foundation.framework */; };
 		556B937459A842F597831010455DD311 /* Pods-CMP_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2352DC317C159DFA8B8228D0D3E986 /* Pods-CMP_Tests-dummy.m */; };
@@ -44,7 +45,6 @@
 		E7B5F3521F2CF7A703DE176F94327C12 /* CMP-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AB908B4B9453065EDA528D4B16699E2 /* CMP-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8AC509D18EBF21B1FEA909652A01108 /* FBSnapshotTestCasePlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB3EB3CCC5BCA82F40FE8DC87BB778 /* FBSnapshotTestCasePlatform.m */; };
 		F1AAAE00BB32B733B238E2B4E8424506 /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 656116C8FA5458F45D4707110C9530EC /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		F4EA907216C8FE0079F3C9936C2516A8 /* WebPrezenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99F847BADB4361C45075905D9DD03D9 /* WebPrezenterViewController.swift */; };
 		F720FAF13A108CE6901E0A8B0580E1E8 /* FBSnapshotTestCase-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E5923010B02074CAA9AAF6EA02D66AA /* FBSnapshotTestCase-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -80,7 +80,6 @@
 		1AB908B4B9453065EDA528D4B16699E2 /* CMP-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CMP-umbrella.h"; sourceTree = "<group>"; };
 		1ADA6E655DC84D06359BD0ED5E36C783 /* FBSnapshotTestCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSnapshotTestCase-dummy.m"; sourceTree = "<group>"; };
 		2018B380259151CC003B5312 /* UserDefaultsOpenCmpStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsOpenCmpStore.swift; sourceTree = "<group>"; };
-		204484AE255D860300786BC0 /* UiView_settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiView_settings.swift; sourceTree = "<group>"; };
 		204953BB2577BD0100213911 /* OpenCmpSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCmpSettings.swift; sourceTree = "<group>"; };
 		207C3A9E2576582B00095890 /* cmp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = cmp.html; sourceTree = "<group>"; };
 		208A097A259B2EAE008573A7 /* OpenCmpError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCmpError.swift; sourceTree = "<group>"; };
@@ -93,7 +92,9 @@
 		3522D0B0B1B01E9E7F877BF9049BDA33 /* Pods-CMP_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CMP_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		3881BC61BC3808A3C3E246E0694810B5 /* Pods_CMP_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CMP_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3FC6D9FA3A4093452A399FE812C739 /* CMP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CMP.debug.xcconfig; sourceTree = "<group>"; };
-		3EABF0C425B1A774006EFEEF /* WKWebView+clean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+clean.swift"; sourceTree = "<group>"; };
+		3E40B0A725B6EA84001EDEA6 /* UiView_settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UiView_settings.swift; sourceTree = "<group>"; };
+		3E40B0A825B6EA84001EDEA6 /* WKWebView+clean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+clean.swift"; sourceTree = "<group>"; };
+		3E40B0A925B6EA84001EDEA6 /* WebPrezenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPrezenterViewController.swift; sourceTree = "<group>"; };
 		3EB397BC8B0E14460959D12686DFC06E /* Pods-CMP_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CMP_Example.release.xcconfig"; sourceTree = "<group>"; };
 		3F0D66CF296ABBC57EC4D0452397E235 /* SwiftSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = FBSnapshotTestCase/SwiftSupport.swift; sourceTree = "<group>"; };
 		40294663CC3D54D3ED7369314B48DFD6 /* Pods-CMP_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CMP_Tests-frameworks.sh"; sourceTree = "<group>"; };
@@ -126,7 +127,6 @@
 		A0A43E4433829402CF470CF5C9FCF066 /* Pods-CMP_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CMP_Example-dummy.m"; sourceTree = "<group>"; };
 		A6F4B5310E9DF0E97E234928DC1EF20A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A825823DC27B69E538602C924D8112AC /* CMP.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = CMP.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A99F847BADB4361C45075905D9DD03D9 /* WebPrezenterViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebPrezenterViewController.swift; path = CMP/Classes/WebPrezenterViewController.swift; sourceTree = "<group>"; };
 		AE9FF9459FBCDC4AF88FB6B5A4CC1439 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
 		AED1A479C94B800CDA398DACDA8B2EFC /* Pods-CMP_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CMP_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		B7103CA00AED20722C5B69CA5B4F6938 /* FBSnapshotTestCase-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FBSnapshotTestCase-Info.plist"; sourceTree = "<group>"; };
@@ -185,23 +185,12 @@
 		0A73A6D30D5FD8B8339A2947CD5AC8F9 /* CMP */ = {
 			isa = PBXGroup;
 			children = (
-				204484A5255D84E500786BC0 /* Extention */,
-				A99F847BADB4361C45075905D9DD03D9 /* WebPrezenterViewController.swift */,
 				20A2E0FA257556C900B34144 /* OpenCmp */,
 				4B4BBE54859D375D9959D13F3F0ABD6F /* Pod */,
 				925B67589E3B76635F05FAF02F611B32 /* Support Files */,
 			);
 			name = CMP;
 			path = ../..;
-			sourceTree = "<group>";
-		};
-		204484A5255D84E500786BC0 /* Extention */ = {
-			isa = PBXGroup;
-			children = (
-				204484AE255D860300786BC0 /* UiView_settings.swift */,
-				3EABF0C425B1A774006EFEEF /* WKWebView+clean.swift */,
-			);
-			path = Extention;
 			sourceTree = "<group>";
 		};
 		204953C12577BD1600213911 /* CMPSettings */ = {
@@ -216,6 +205,8 @@
 		20A2E0FA257556C900B34144 /* OpenCmp */ = {
 			isa = PBXGroup;
 			children = (
+				3E40B0A625B6EA84001EDEA6 /* Extention */,
+				3E40B0A925B6EA84001EDEA6 /* WebPrezenterViewController.swift */,
 				204953C12577BD1600213911 /* CMPSettings */,
 				20A2E0CE257529A400B34144 /* OpenCmpConfig.swift */,
 				20A2E0FB2575570300B34144 /* OpenCmp.swift */,
@@ -223,6 +214,15 @@
 				2018B380259151CC003B5312 /* UserDefaultsOpenCmpStore.swift */,
 			);
 			path = OpenCmp;
+			sourceTree = "<group>";
+		};
+		3E40B0A625B6EA84001EDEA6 /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+				3E40B0A725B6EA84001EDEA6 /* UiView_settings.swift */,
+				3E40B0A825B6EA84001EDEA6 /* WKWebView+clean.swift */,
+			);
+			path = Extention;
 			sourceTree = "<group>";
 		};
 		4B4BBE54859D375D9959D13F3F0ABD6F /* Pod */ = {
@@ -625,13 +625,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				208A097B259B2EAE008573A7 /* OpenCmpError.swift in Sources */,
+				3E40B0AB25B6EA84001EDEA6 /* WKWebView+clean.swift in Sources */,
 				1804E0E29D2D23DD9338E1A418E0F8EC /* CMP-dummy.m in Sources */,
-				204484AF255D860300786BC0 /* UiView_settings.swift in Sources */,
 				20A2E0FC2575570300B34144 /* OpenCmp.swift in Sources */,
+				3E40B0AC25B6EA84001EDEA6 /* WebPrezenterViewController.swift in Sources */,
 				204953BC2577BD0100213911 /* OpenCmpSettings.swift in Sources */,
-				F4EA907216C8FE0079F3C9936C2516A8 /* WebPrezenterViewController.swift in Sources */,
 				20A2E0CF257529A400B34144 /* OpenCmpConfig.swift in Sources */,
-				3EABF0C525B1A774006EFEEF /* WKWebView+clean.swift in Sources */,
+				3E40B0AA25B6EA84001EDEA6 /* UiView_settings.swift in Sources */,
 				2018B381259151CC003B5312 /* UserDefaultsOpenCmpStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

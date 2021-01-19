@@ -44,7 +44,7 @@ public class UserDefaultsOpenCmpStore: OpenCmpStore {
         })
     }
 
-    func checkValueInOldValue(_ dict: [String: Any], key: String, item: Any) {
+    final func checkValueInOldValue(_ dict: [String: Any], key: String, item: Any) {
         if let currentValue = dict[key] {
             if !compare(a: currentValue, b: item) {
                 value[key] = item
@@ -67,17 +67,17 @@ public class UserDefaultsOpenCmpStore: OpenCmpStore {
         observer?.invalidate()
     }
 
-    func clear() {
+    final func clear() {
         userDefaults?.removeObject(forKey: CMPStaticList.cmpSettings)
     }
 
-    func update(values: [String: Any]?) {
+    final func update(values: [String: Any]?) {
         guard let archivedData = values else { return }
         let convertData = NSKeyedArchiver.archivedData(withRootObject: archivedData)
         userDefaults?.set(convertData, forKey: CMPStaticList.cmpSettings)
     }
 
-    func getConsentString() throws -> String {
+    final func getConsentString() throws -> String {
         let data = userDefaults?.object(forKey: CMPStaticList.cmpSettings)
         
         let emptyDict: [String : Any?] = ["meta" : [:]]
