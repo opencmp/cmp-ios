@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //creating config with domain, storageName, errorHandler and data changeListener
         let config = OpenCmpConfig(
             "traffective.com",
-            storageName: "open_cmp.storage",
             setErrorHandler: { result in
                 print("Error", result)
             }, setChangesListener: { change in
