@@ -1,11 +1,14 @@
 #Integration
 
-##Struktur
-Das Package enthaelt zwei Order:
-- Example: Beispiel-Integration
-- OpenCmp: Die CMP-Library, die in die App importiert werden muss
+##Source structure
+
+The sources contain two folders:
+- OpenCmp: The library itself, that has to be imported into the consuming project
+- Example: Integration demo
+
 ##Integration
-Die Integration erfolgt in der AppDelegate Klasse:
+
+The integration can be done in the class AppDelegate:
 ```
 let config = OpenCmpConfig(
     "domain.de",
@@ -17,13 +20,19 @@ let config = OpenCmpConfig(
 //initialize framework
 OpenCmp.initialize(config)
 ```
+
 ##Features
-###Button fuer nachtraegliche Einstellungen
-Damit der User nachtraeglich Einstellungen zum Consent anpassen kann, bietet das CMP eine Funktion an, um das Popup zu erzeugen:
+###Button for changing consent settings
+
+To enable the user to change consent settings the CMP provides a function to show the UI:
+
 ```
 OpenCmp.showUI()
 ```
-###Zugriff auf Consent
-Der Consent ist in den `UserDefaults.standard` gespeichert und kann direkt von dort gelesen und auch auf Aenderungen reagiert werden.
-Die im Consent enthaltenen Key-Value-Paare entnehmen Sie bitte der Spezifikation der IAB:
+
+###How to access the consent
+
+The consent is stored in `UserDefaults.standard` and can be read from there and listened to changes. 
+
+Please read the IAB specs for the specific names of the key value pairs that are stored:
 https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md#how-is-a-cmp-used-in-app 
