@@ -1,12 +1,12 @@
-#Integration
+# Integration
 
-##Source structure
+## Source structure
 
 The sources contain two folders:
 - OpenCmp: The library itself, that has to be imported into the consuming project
 - Example: Integration demo
 
-##Integration
+## Integration
 
 The integration can be done in the class AppDelegate:
 ```
@@ -21,8 +21,8 @@ let config = OpenCmpConfig(
 OpenCmp.initialize(config)
 ```
 
-##Features
-###Button for changing consent settings
+## Features
+### Button for changing consent settings
 
 To enable the user to change consent settings the CMP provides a function to show the UI:
 
@@ -30,7 +30,7 @@ To enable the user to change consent settings the CMP provides a function to sho
 OpenCmp.showUI()
 ```
 
-###How to access the consent
+### How to access the consent
 
 The consent is stored in `UserDefaults.standard` and can be read from there and listened to changes. 
 
